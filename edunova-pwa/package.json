@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && rmdir d:\\C-Sharp\\EdunovaWEBAPI\\videotekaAPI\\videoteka\\videoteka\\wwwroot /s /q && move /y build/CSharp/EdunovaWEBAPI/videotekaAPI/videoteka/videoteka/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
