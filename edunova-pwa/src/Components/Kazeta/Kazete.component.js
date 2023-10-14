@@ -23,7 +23,37 @@ export default class Kazeta extends Component{
                     </tr>
                 </thead>
                 <tbody>
-                    {/* Ovdje će doći podaci s backend-a */}
+                     { kazeta && kazeta.map((kazeta,index) => (
+
+                    <tr key={index}>
+                        <td>{kazeta.naslov}</td>
+                        <td className="broj">{kazeta.Godina_izdanja}</td>
+                        <td className="broj">
+                            <NumericFormat
+                                value={kazeta.Cijena_posudbe}
+                                displayType={'text'}
+                                thousandSeparator='.'
+                                decimalSeparator=','
+                                prefix={'€'}
+                                decimalScale={2} 
+                                fixedDecimalScale/>
+                        </td>
+
+                        <td>{kazeta.naslov}</td>
+                        <td className="broj">{kazeta.Godina_izdanja}</td>
+                        <td className="broj">
+                        <NumericFormat
+                                value={kazeta.Cijena_zakasnine}
+                                displayType={'text'}
+                                thousandSeparator='.'
+                                decimalSeparator=','
+                                prefix={'€'}
+                                decimalScale={2} 
+                                fixedDecimalScale/> 
+                        </td>
+                    </tr>
+
+                   ))}
                 </tbody>
                </Table>
 
