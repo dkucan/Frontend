@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ClankDataService from "../../services/clan.service";
+import ClanDataService from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
