@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Table } from "react-bootstrap";
 
 
-export default class Kazeta extends Component{
+export default class kazeta extends Component{
 
 
     render(){

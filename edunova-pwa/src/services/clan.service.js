@@ -1,21 +1,21 @@
 import http from '../http-common';
 
-class PolaznikDataService {
+class clanDataService {
   async getAll() {
-    return await http.get('/polaznik');
+    return await http.get('/clan');
   }
 
 
 
   async getBySifra(sifra) {
-    return await http.get('/polaznik/' + sifra);
+    return await http.get('/clan/' + sifra);
   }
 
-  async post(polaznik){
+  async post(clan){
     //console.log(smjer);
-    const odgovor = await http.post('/polaznik',polaznik)
+    const odgovor = await http.post('/clan',clan)
        .then(response => {
-         return {ok:true, poruka: 'Unio polaznika'}; // return u odgovor
+         return {ok:true, poruka: 'Unio clana'}; // return u odgovor
        })
        .catch(error => {
         console.log(error.response);
@@ -25,10 +25,10 @@ class PolaznikDataService {
        return odgovor;
   }
 
-  async put(sifra,polaznik){
-    const odgovor = await http.put('/polaznik/' + sifra,polaznik)
+  async put(sifra,clan){
+    const odgovor = await http.put('/clan/' + sifra,clan)
        .then(response => {
-         return {ok:true, poruka: 'Promjenio polaznika'}; // return u odgovor
+         return {ok:true, poruka: 'Promjenio clana'}; // return u odgovor
        })
        .catch(error => {
         console.log(error.response);
@@ -41,7 +41,7 @@ class PolaznikDataService {
 
   async delete(sifra){
     
-    const odgovor = await http.delete('/polaznik/' + sifra)
+    const odgovor = await http.delete('/clan/' + sifra)
        .then(response => {
          return {ok:true, poruka: 'Obrisao uspješno'};
        })
@@ -56,4 +56,4 @@ class PolaznikDataService {
  
 }
 
-export default new PolaznikDataService();
+export default new ClanDataService();
