@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ClankDataService from "../../services/Clan.service";
+import ClanDataService from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,28 +7,28 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import { FaEdit } from 'react-icons/fa';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash} from 'react-cions/fa';
 import { Modal } from 'react-bootstrap';
 
 
-export default class Clanovi extends Component {
-  constructor(props) {
-    super(props);
-    this.dohvatiClan= this.dohvatiClanovi.bind(this);
+export default class clanovi extends Component {
 
-    this.state = {
+  constructor (props) {
+    super(props);
+    this.dohvatiClan = this.dohvatiClan.bind(this);
+
+    this.state={
       clanovi: [],
       prikaziModal: false
     };
   }
 
 
-
   otvoriModal = () => this.setState({ prikaziModal: true });
   zatvoriModal = () => this.setState({ prikaziModal: false });
 
   componentDidMount() {
-    this.dohvatiClanovi();
+    this.dohvatiClan();
   }
   dohvatiClan() {
     ClanDataService.getAll()
@@ -67,7 +67,7 @@ export default class Clanovi extends Component {
 
               <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                  <Card.Title>{p.ime} {p.prezime}</Card.Title>
+                  <Card.Title>{p.Ime} {p.Prezime}</Card.Title>
                   <Card.Text>
                     {p.email}
                   </Card.Text>
