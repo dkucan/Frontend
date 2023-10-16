@@ -1,6 +1,6 @@
 import http from '../http-common';
 
-class clanDataService {
+class ClanDataService {
   async getAll() {
     return await http.get('/Clan');
   }
@@ -12,10 +12,10 @@ class clanDataService {
   }
 
   async post(clan){
-    //console.log(smjer);
+    //console.log(kazeta);
     const odgovor = await http.post('/Clan',clan)
        .then(response => {
-         return {ok:true, poruka: 'Unio Clana'}; // return u odgovor
+         return {ok:true, poruka: 'Unio clana'}; // return u odgovor
        })
        .catch(error => {
         console.log(error.response);
@@ -25,10 +25,10 @@ class clanDataService {
        return odgovor;
   }
 
-  async put(sifra,Clan){
-    const odgovor = await http.put('/Clan/' + sifra,Clan)
+  async put(sifra,clan){
+    const odgovor = await http.put('/Clan/' + sifra,clan)
        .then(response => {
-         return {ok:true, poruka: 'Promjenio Clana'}; // return u odgovor
+         return {ok:true, poruka: 'Promjenio Clan'}; // return u odgovor
        })
        .catch(error => {
         console.log(error.response);
@@ -56,4 +56,4 @@ class clanDataService {
  
 }
 
-export default new clanDataService();
+export default new ClanDataService();

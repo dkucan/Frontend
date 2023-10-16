@@ -8,50 +8,46 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
 
-export default class DodajClana extends Component {
-    
-    constructor(props) {
-        super(props);
-        this.DodajClana=this.dodajClan.bind(this);
-        this.handleSubmit=this.handleSubmit.bind(this);
-    }
+export default class dodajClan extends Component {
 
-    async DodajClana (clan) {
-        const odgovor = await ClanDataService.post(clan);
-        if (odgovor.ok){
-            //routing na kazete
-            window.location.href='/clanovi';
-        }else{
-            // pokaži grešku
-            console.log(odgovor);
-        }
+constructor (props) {
+    super(props);
+    this.dodajClan=this.dodajClan.bind(this);
+    this.handleSubmit=this.handleSubmit.bind(this);
+}
+async dodajClan(kazeta) {
+    const odgovor=await ClanDataService.post(kazeta);
+    if (odgovor.ok){
+        //routing na kazete
+        window.location.href='/clanovi';
+    }else{
+        //pokaži grešku
+        console.log(odgovor);
     }
+}
 
-    handleSubmit(e){
+
+    handlesubmit(e) {
         e.preventDefault();
-        const podaci = new FormData(e.target);
+        const podaci=new FormData(e.target);
 
         this.dodajClan({
-            Ime: podaci.get('ime'),
-            Prezime: podaci.get('prezime'),
-            Adresa: podaci.get('adresa'),
-            Mobitel: podaci.get('mobitel'),
-            OIB: podaci.get('OIB'),
-            Datum_uclanjenja: podaci.get('Datum_uclanjenja'), 
+           ime: podaci.get('ime'),
+           Prezime: podaci.get('prezime'),
+           OIB: podaci.get('OIB'),
+           Mobitel: podaci.get('Mobitel'),
+           Datum_uclanjenja: podaci.get('Datum_uclanjenja'),
         });
     }
 
+    
+    
     render () {
         return (
             <Container>
                 <Form onSubmit={this.handleSubmit}>
-
-                    <Form.Group className="mb-3" controlId= "Ime">
-                    <Form.Label>Ime</Form.Label>
-                    <Form.Control type="text" name="Ime" placeholder="Pero" maxLength={255} required />
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="Prezime">
+  
+                <Form.Group className="mb-3" controlId="Prezime">
                     <Form.Label>Prezime</Form.Label>
                     <Form.Control type="text" name="Prezime" placeholder="Perić" required />
                     </Form.Group>
@@ -77,8 +73,11 @@ export default class DodajClana extends Component {
                         </Button>
                         </Col>
                     </Row>
+
+
                 </Form>
             </Container>
+        
         );
     }
 }

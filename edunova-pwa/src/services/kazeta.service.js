@@ -24,11 +24,11 @@ class KazetaDataService{
     }
 
 
-    async post(kazeta){
+    async post(Kazeta){
         //console.log(smjer);
-        const odgovor = await http.post('/Kazeta',kazeta)
+        const odgovor = await http.post('/Kazeta',Kazeta)
            .then(response => {
-             return {ok:true, poruka: 'Unio smjer'}; // return u odgovor
+             return {ok:true, poruka: 'Unio kazetu'}; // return u odgovor
            })
            .catch(error => {
             //console.log(error.response);
@@ -40,7 +40,7 @@ class KazetaDataService{
 
     async put(sifra,kazeta){
         //console.log(smjer);
-        const odgovor = await http.put('/kazeta/' + sifra,kazeta)
+        const odgovor = await http.put('/Kazeta/' + sifra,kazeta)
            .then(response => {
              return {ok:true, poruka: 'Promjenio kazetu'}; // return u odgovor
            })

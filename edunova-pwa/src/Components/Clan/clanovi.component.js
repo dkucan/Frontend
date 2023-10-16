@@ -6,53 +6,52 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
-import { FaEdit } from 'react-icons/fa';
-import { FaTrash} from 'react-cions/fa';
-import { Modal } from 'react-bootstrap';
+import {FaEdit} from 'react-icons/fa';
+import { FaTrash } from 'react-icons/fa';
+import { Modal } from 'react-bootstrap;'
 
 
 export default class clanovi extends Component {
+ constructor(props) {
+  super(props);
+  this.dohvatiClan=this.dohvatiClan.bind(this);
 
-  constructor (props) {
-    super(props);
-    this.dohvatiClan = this.dohvatiClan.bind(this);
-
-    this.state={
-      clanovi: [],
-      prikaziModal: false
-    };
-  }
+  this.state={
+    clanovi: [],
+    prikaziModal: false
+  };
+ }
 
 
-  otvoriModal = () => this.setState({ prikaziModal: true });
-  zatvoriModal = () => this.setState({ prikaziModal: false });
 
-  componentDidMount() {
+ otvoriModal=() => this.setState({prikaziModal: true});
+ zatvoriModal= () => this.setState({prikaziModal: false});
+
+ componentDidMount() {
+  this.dohvatiClan();
+ }
+ dohvatiClan(){
+  ClanDataService.getAll()
+  .then(response=> {
+    this.setState({
+      clan:response.data
+    });
+  })
+  .catch(e=>{
+    console.log(e);
+  });
+ }
+
+ async obrisiClan(sifra){
+
+  const odgovor=await ClanDataService.delete(sifra);
+  if(odgovor.ok){
     this.dohvatiClan();
+  }else{
+    //alert(odgovor.poruka);
+    this.otvoriModal();
   }
-  dohvatiClan() {
-    ClanDataService.getAll()
-      .then(response => {
-        this.setState({
-          clan: response.data
-        });
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
-  async obrisiClan(sifra){
-    
-    const odgovor = await ClanDataService.delete(sifra);
-    if(odgovor.ok){
-     this.dohvatiClan();
-    }else{
-     // alert(odgovor.poruka);
-      this.otvoriModal();
-    }
-    
-   }
+ }
 
   render() {
     const { clanovi} = this.state;
@@ -69,7 +68,7 @@ export default class clanovi extends Component {
                 <Card.Body>
                   <Card.Title>{p.Ime} {p.Prezime}</Card.Title>
                   <Card.Text>
-                    {p.email}
+                    {p.Mobitel}
                   </Card.Text>
                   <Row>
                       <Col>
