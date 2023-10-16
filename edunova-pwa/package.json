@@ -33,8 +33,8 @@
     "workbox-streams": "^6.6.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build && rmdir ..\\..\\C-Sharp\\EdunovaWEBAPI\\VideotekaAPI\\VIdeoteka\\VIdeoteka\\wwwroot /s /q && move /y  build ../../C-Sharp/EdunovaWEBAPI/VideotekaAPI/VIdeoteka/VIdeoteka/wwwroot",
+    "start": "react-scripts start --openssl-legacy-provider start",
+    "build": "react-scripts build --openssl-legacy-provider start && rmdir ..\\..\\C-Sharp\\EdunovaWEBAPI\\VideotekaAPI\\VIdeoteka\\VIdeoteka\\wwwroot /s /q && move /y  build ../../C-Sharp/EdunovaWEBAPI/VideotekaAPI/VIdeoteka/VIdeoteka/wwwroot",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
