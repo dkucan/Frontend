@@ -10,6 +10,9 @@ import PromjeniKazetu from './Components/Kazeta/promjeniKazetu.component';
 import Clan from './Components/Clan/clanovi.component';
 import DodajClana from './Components/Clan/dodajClan.component';
 import PromjeniClan from './Components/Clan/PromjeniClan.component';
+import Button from 'react-bootstrap/Button';
+import { Bagde } from 'react-bootstrap/Badge';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function App() {
   return (

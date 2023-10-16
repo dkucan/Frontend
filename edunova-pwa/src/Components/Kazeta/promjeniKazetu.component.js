@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import KazetaDataService from "../../services/kazeta.service";
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button;'
+import { Button } from "bootstrap";
 import Form from 'react-bootstrap/form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';

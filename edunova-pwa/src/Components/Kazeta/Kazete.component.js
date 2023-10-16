@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Button, Container, Table } from "react-bootstrap";
+import { Button } from "bootstrap";
+import Container from 'react-bootstrap/Container';
+import { Table } from 'react-bootstrap';
 import KazetaDataService from "../../services/kazeta.service";
 import { NumericFormat } from "react-number-format";
 import { Link } from "react-router-dom";

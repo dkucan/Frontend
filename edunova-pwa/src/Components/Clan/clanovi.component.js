@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { Button } from "bootstrap";
 import { Link } from "react-router-dom";
 import {FaEdit} from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
