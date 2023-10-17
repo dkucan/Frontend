@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container } from "react-bootstrap";
 
 
-export default class NadzornaPloca extends Component{
+export default class NadzornaPloca extends React.Component{
 
 
     render(){

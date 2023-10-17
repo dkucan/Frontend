@@ -1,7 +1,7 @@
-import React, {component} from "react";
+import React, {Component} from "react";
 import kazetadataservice from "../../services/kazeta.service";
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import Button from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,7 +10,7 @@ import {Link} from "react-router-dom";
 
 
 
-export default class dodajkazetu extends component {
+export default class dodajkazetu extends React.Component {
 
     constructor (props){
         super(props);

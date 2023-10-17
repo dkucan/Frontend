@@ -1,16 +1,16 @@
-import React, { component } from "react";
+import React, { Component } from "react";
 import clandataservice from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { Button } from 'react-bootstrap/Button';
+import {Button} from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import {FaEdit} from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
 import { Modal } from 'react-bootstrap';
 
-export default class clan extends component {
+export default class clan extends React.Component {
     constructor(props) {
      super(props);
      this.dohvaticlan=this.dohvaticlan.bind(this);

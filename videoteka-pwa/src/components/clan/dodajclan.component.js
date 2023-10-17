@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import clandataservice from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
-import Button from 'react-bootstrap/Button';
+import {Button} from 'react-bootstrap';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
 
-export default class dodajclan extends Component {
+export default class dodajclan extends React.Component {
 
 constructor (props) {
     super(props);

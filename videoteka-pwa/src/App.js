@@ -22,10 +22,10 @@ export default function App() {
       <Route path='/' element={<pocetna />} />
       <Route path='/nadzornaploca' element={<nadzornaploca/>} />
       <Route path='/kazeta' element={<kazeta />} />
-      <Route path="/kazeta/dodaj" element= {<dodajkazetu />} />
+      <Route path="/kazeta/dodajclan" element= {<dodajkazetu />} />
       <Route path="/kazeta/:sifra" element={<promjenikazetu />} />
       <Route path="/clan" element={<clan />} />
-      <Route path="/clan/dodaj" element={<dodajclan />} />
+      <Route path="/clan/dodajclan" element={<dodajclan />} />
       <Route path="/clan/:sifra" element={<promjeniclan />} />
 
     </Routes>
