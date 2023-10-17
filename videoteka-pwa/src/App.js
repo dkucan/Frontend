@@ -16,16 +16,16 @@ export default function App() {
   return (
     <Router>
 
-    <izbornik />
+   
     <Routes>
     
-      <Route path='/' element={<pocetna />} />
-      <Route path='/nadzornaploca' element={<nadzornaploca/>} />
-      <Route path='/kazeta' element={<kazeta />} />
-      <Route path="/kazeta/dodajclan" element= {<dodajkazetu />} />
+      <Route path='/' Component={pocetna} />
+      <Route path='/nadzornaploca' Component={nadzornaploca} />
+      <Route path='/kazeta' Component={kazeta} />
+      <Route path="/kazeta/dodajclan" Component= {dodajkazetu} />
       <Route path="/kazeta/:sifra" element={<promjenikazetu />} />
       <Route path="/clan" element={<clan />} />
-      <Route path="/clan/dodajclan" element={<dodajclan />} />
+      <Route path="/clan/dodajclan" element={<dodajclan />} /> 
       <Route path="/clan/:sifra" element={<promjeniclan />} />
 
     </Routes>

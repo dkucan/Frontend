@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import kazetadataservice from "../../services/kazeta.service";
 import Container from 'react-bootstrap/Container';
 import {Button} from 'react-bootstrap';
-import Form from 'react-bootstrap/form';
+import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
