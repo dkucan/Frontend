@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { component } from "react";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -7,7 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import logo from '../logo.svg';
 
 
-export default class Izbornik extends Component{
+export default class izbornik extends component{
 
 
     render(){
@@ -20,12 +20,12 @@ export default class Izbornik extends Component{
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <Nav.Link href="/nadzornaploca">Nadzorna ploča</Nav.Link>
-                  <NavDropdown title="Programi" id="basic-nav-dropdown">
-                    <NavDropdown.Item href="/kazete">Kazeta</NavDropdown.Item>
-                    <NavDropdown.Item href="/clanovi">
+                  <NavDropdown title="Videoteka" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/kazeta">kazeta</NavDropdown.Item>
+                    <NavDropdown.Item href="/clan">
                       Clanovi
                     </NavDropdown.Item>
-                    <NavDropdown.Item href="/posudbe">Posudbe</NavDropdown.Item>
+                    <NavDropdown.Item href="/posudba">posudba</NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item target="_blank" href="/swagger/index.html">
                       Swagger

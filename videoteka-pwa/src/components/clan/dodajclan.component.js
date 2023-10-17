@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ClanDataService from "../../services/clan.service";
+import clandataservice from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,18 +8,18 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
 
-export default class dodajClan extends Component {
+export default class dodajclan extends Component {
 
 constructor (props) {
     super(props);
-    this.dodajClan=this.dodajClan.bind(this);
+    this.dodajclan=this.dodajclan.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
 }
-async dodajClan(kazeta) {
-    const odgovor=await ClanDataService.post(kazeta);
+async dodajclan(kazeta) {
+    const odgovor=await clandataservice.post(kazeta);
     if (odgovor.ok){
         //routing na kazete
-        window.location.href='/clanovi';
+        window.location.href='/clan';
     }else{
         //pokaži grešku
         console.log(odgovor);
@@ -31,7 +31,7 @@ async dodajClan(kazeta) {
         e.preventDefault();
         const podaci=new FormData(e.target);
 
-        this.dodajClan({
+        this.dodajclan({
            ime: podaci.get('ime'),
            Prezime: podaci.get('prezime'),
            OIB: podaci.get('OIB'),
@@ -65,7 +65,7 @@ async dodajClan(kazeta) {
 
                     <Row>
                         <Col>
-                        <Link className="btn btn-danger gumb" to={'/clanovi'}>Odustani</Link>
+                        <Link className="btn btn-danger gumb" to={'/clan'}>Odustani</Link>
                         </Col>
                         <Col>
                         <Button variant="primary" className="gumb" type = "submit">

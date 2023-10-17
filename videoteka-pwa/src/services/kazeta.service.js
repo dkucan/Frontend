@@ -1,18 +1,18 @@
 import http from "../http-common";
 
 
-class KazetaDataService{
+class kazetadataservice{
 
     async get(){
-        return await http.get('/Kazeta');
+        return await http.get('/kazeta');
     }
 
     async getBySifra(sifra) {
-        return await http.get('/Kazeta/' + sifra);
+        return await http.get('/kazeta/' + sifra);
       }
 
     async delete(sifra){
-        const odgovor = await http.delete('/Kazeta/' + sifra)
+        const odgovor = await http.delete('/kazeta/' + sifra)
         .then(response => {
             return {ok: true, poruka: 'Obrisao uspješno'};
         })
@@ -24,9 +24,9 @@ class KazetaDataService{
     }
 
 
-    async post(Kazeta){
+    async post(kazeta){
         //console.log(smjer);
-        const odgovor = await http.post('/Kazeta',Kazeta)
+        const odgovor = await http.post('/kazeta',kazeta)
            .then(response => {
              return {ok:true, poruka: 'Unio kazetu'}; // return u odgovor
            })
@@ -40,7 +40,7 @@ class KazetaDataService{
 
     async put(sifra,kazeta){
         //console.log(smjer);
-        const odgovor = await http.put('/Kazeta/' + sifra,kazeta)
+        const odgovor = await http.put('/kazeta/' + sifra,kazeta)
            .then(response => {
              return {ok:true, poruka: 'Promjenio kazetu'}; // return u odgovor
            })
@@ -54,4 +54,4 @@ class KazetaDataService{
 
 }
 
-export default new KazetaDataService();
+export default new kazetadataservice();

@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import ClanDataService from "../../services/clan.service";
+import React, { component } from "react";
+import clandataservice from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -8,13 +8,13 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
 
-export default class PromjeniClan extends Component {
+export default class promjeniclan extends component {
 
   constructor (props) {
     super(props);
 
-    this.Clan=this.dohvatiClan();
-    this.PromjeniClan=this.PromjeniClan.bind(this);
+    this.clan=this.dohvaticlan();
+    this.promjeniclan=this.promjeniclan.bind(this);
     this.handleSubmit=this.handleSubmit.bind(this);
 
 
@@ -23,11 +23,11 @@ export default class PromjeniClan extends Component {
     };
   }
 
-  async dohvatiClan(){
+  async dohvaticlan(){
     //ovo mora bolje
     let href = window.location.href;
     let niz=href.split('/');
-    await ClanDataService.getBySifra(niz[niz.length-1])
+    await clandataservice.getBySifra(niz[niz.length-1])
     .then(response=> {
       this.setState({
         clan: response.data
@@ -39,12 +39,12 @@ export default class PromjeniClan extends Component {
     });
   }
 
-  async PromjeniClan(clan){
+  async promjeniclan(clan){
     //ovo mora bolje
 
     let href=window.location.href;
     let niz=href.split('niz');
-    const odgovor=await ClanDataService.put(niz[niz.length-1], clan);
+    const odgovor=await clandataservice.put(niz[niz.length-1], clan);
     if (odgovor.ok){
       window.location.href='/clanovi';
     }else{
@@ -66,11 +66,12 @@ handleSubmit(e){
   //console.log(podaci.get('verificiran'));
   // You can pass formData as a service body directly:
 
-  this.PromjeniClan({
+  this.promjeniclan({
     Ime: podaci.get('ime'),
     Prezime: podaci.get('prezime'),
     Mobitel: podaci.get('mobitel'),
-    OIB: podaci.get('OIB')
+    OIB: podaci.get('OIB'),
+    Datum_uclanjenja:podaci.get('Datum_uclanjenja')
   });
 
 }
@@ -108,7 +109,7 @@ render(){
 
             <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/clanovi`}>Odustani</Link>
+              <Link className="btn btn-danger gumb" to={`/clan`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">
@@ -124,5 +125,3 @@ render(){
     );
   }
 }
-        
-         

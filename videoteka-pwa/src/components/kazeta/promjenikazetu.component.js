@@ -1,74 +1,76 @@
-import React, {Component} from "react";
-import KazetaDataService from "../../services/kazeta.service";
+import React, {component} from "react";
+import kazetadataservice from "../../services/kazeta.service";
 import Container from 'react-bootstrap/Container';
-import { Button } from "bootstrap";
+import {Button} from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/form';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
+export default class promjenikazetu extends component {
 
-export default class PromjeniKazetu extends Component {
+    constructor (props){
+        super (props);
 
-    constructor (props) {
-        super(props);
+        this.kazeta=this.dohvatikazetu();
+        this.promjenikazetu=this.promjenikazetu.bind(this);
+        this.handlesubmit=this.handlesubmit.bind(this);
 
+        this.state={
+            kazeta:{}
 
-        this.kazeta = this.dohvatiKazetu();
-        this.promjeniKazetu=this.promjeniKazetu.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-
-
-        this.state = {
-            kazeta: {}
         };
     }
 
-    async dohvatiKazetu() {
+    async dohvatikazetu(){
         let href=window.location.href;
-        let niz = href.split('/');
-        await KazetaDataService.getBySifra(niz[niz.length-1])
+        let niz= href.split('/');
+        await kazetadataservice.getBySifra(niz[niz.length-1])
         .then(response=> {
             this.setState({
-                kazeta: response.data
+                kazeta:response.data
             });
+
             // console.log(response.data);
         })
         .catch(e=>{
             console.log(e);
         });
+
     }
 
+    async promjenikazetu (kazeta) {
+        // ovo mora bolje
 
-    async promjeniKazetu (kazeta) {
-        //ovo mora bolje
         let href=window.location.href;
         let niz = href.split('/');
-        const odgovor= await KazetaDataService.put(niz[niz.length-1], kazeta);
+        const odgovor= await kazetadataservice.put(niz[niz.length-1], kazeta);
         if (odgovor.ok){
-            //routing na kazerte
-            window.location.href='/kazete';
+            //routing na kazete
+            window.location.href='/kazeta';
         }else{
             //pokaži grešku
             console.log(odgovor);
         }
     }
 
-      handleSubmit (e) {
+    handlesubmit(e){
+
         // Prevent the browser from reloading the page
         e.preventDefault();
 
         // Read the form data
+
         const podaci=new FormData(e.target);
-        //Object.keys(formData).forEach(fieldName=> {
+        // Object.keys(formData).forEach(fieldName=> {
         // console.log(fieldName, formData[fieldName]);
         //})
 
         //console.log(podaci.get('verificiran'));
-        //You can pass formData as a service body directly:
+        // You can pass formData as a service body directly:
 
-        this.promjeniKazetu({
-            Naslov: podaci.get('naslov'),
+        this.promjenikazetu({
+            Naslov: podaci.get('Naslov'),
             Godina_izdanja:podaci.get('Godina_izdanja'),
             Žanr: podaci.get('Žanr'),
             Cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),

@@ -1,37 +1,34 @@
-import React, { Component } from "react";
-import ClanDataService from "../../services/clan.service";
+import React, { component } from "react";
+import clandataservice from "../../services/clan.service";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
-import { Button } from "bootstrap";
+import { Button } from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import {FaEdit} from 'react-icons/fa';
 import { FaTrash } from 'react-icons/fa';
-import { Modal } from 'react-bootstrap;'
+import { Modal } from 'react-bootstrap';
 
+export default class clan extends component {
+    constructor(props) {
+     super(props);
+     this.dohvaticlan=this.dohvaticlan.bind(this);
+   
+     this.state={
+       clan: [],
+       prikaziModal: false
+     };
+    }
 
-export default class clanovi extends Component {
- constructor(props) {
-  super(props);
-  this.dohvatiClan=this.dohvatiClan.bind(this);
-
-  this.state={
-    clanovi: [],
-    prikaziModal: false
-  };
- }
-
-
-
- otvoriModal=() => this.setState({prikaziModal: true});
+    otvoriModal=() => this.setState({prikaziModal: true});
  zatvoriModal= () => this.setState({prikaziModal: false});
 
  componentDidMount() {
-  this.dohvatiClan();
+  this.dohvaticlan();
  }
- dohvatiClan(){
-  ClanDataService.getAll()
+ dohvaticlan(){
+  clandataservice.getAll()
   .then(response=> {
     this.setState({
       clan:response.data
@@ -42,11 +39,11 @@ export default class clanovi extends Component {
   });
  }
 
- async obrisiClan(sifra){
+ async obrisiclan(sifra){
 
-  const odgovor=await ClanDataService.delete(sifra);
+  const odgovor=await clandataservice.delete(sifra);
   if(odgovor.ok){
-    this.dohvatiClan();
+    this.dohvaticlan();
   }else{
     //alert(odgovor.poruka);
     this.otvoriModal();
@@ -54,13 +51,13 @@ export default class clanovi extends Component {
  }
 
   render() {
-    const { clanovi} = this.state;
+    const { clan} = this.state;
     return (
 
     <Container>
       <a href="/clan/dodaj" className="btn btn-success gumb">Dodaj novog clana</a>
     <Row>
-      {clanovi && clanovi.map((p) => (
+      {clan && clan.map((p) => (
            
            <Col key={p.sifra} sm={12} lg={3} md={3}>
 
@@ -72,10 +69,10 @@ export default class clanovi extends Component {
                   </Card.Text>
                   <Row>
                       <Col>
-                      <Link className="btn btn-primary gumb" to={`/clanovi/${p.sifra}`}><FaEdit /></Link>
+                      <Link className="btn btn-primary gumb" to={`/clan/${p.sifra}`}><FaEdit /></Link>
                       </Col>
                       <Col>
-                      <Button variant="danger" className="gumb"  onClick={() => this.obrisiClan(p.sifra)}><FaTrash /></Button>
+                      <Button variant="danger" className="gumb"  onClick={() => this.obrisiclan(p.sifra)}><FaTrash /></Button>
                       </Col>
                     </Row>
                 </Card.Body>

@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { component } from "react";
 import { Container } from "react-bootstrap";
 
 
-export default class Pocetna extends Component{
+export default class pocetna extends component{
 
 
     render(){
