@@ -55,11 +55,11 @@ export default class kazeta extends React.Component {
                 <Table stripped bordered hover responsive>
                     <thead>
                         <tr>
-                            <th>Naslov</th>
-                            <th>Godina_izdanja</th>
-                            <th>Žanr</th>
-                            <th>Cijena_posudbe</th>
-                            <th>Cijena_zakasnine</th>
+                            <th>naslov</th>
+                            <th>godina_izdanja</th>
+                            <th>zanr</th>
+                            <th>cijena_posudbe</th>
+                            <th>cijena_zakasnine</th>
                         </tr>
                         </thead>
                         <tbody>

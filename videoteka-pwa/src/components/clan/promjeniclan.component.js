@@ -46,7 +46,7 @@ export default class promjeniclan extends React.Component {
     let niz=href.split('niz');
     const odgovor=await clandataservice.put(niz[niz.length-1], clan);
     if (odgovor.ok){
-      window.location.href='/clanovi';
+      window.location.href='/clan';
     }else{
       //pokaži grešku
       console.log(odgovor);
@@ -67,11 +67,11 @@ handleSubmit(e){
   // You can pass formData as a service body directly:
 
   this.promjeniclan({
-    Ime: podaci.get('ime'),
-    Prezime: podaci.get('prezime'),
-    Mobitel: podaci.get('mobitel'),
-    OIB: podaci.get('OIB'),
-    Datum_uclanjenja:podaci.get('Datum_uclanjenja')
+    ime: podaci.get('ime'),
+    prezime: podaci.get('prezime'),
+    mobitel: podaci.get('mobitel'),
+    oib: podaci.get('OIB'),
+    datum_uclanjenja:podaci.get('Datum_uclanjenja')
   });
 
 }
@@ -87,23 +87,23 @@ render(){
 
 
         <Form.Group className="mb-3" controlID="ime">
-          <Form.Label>Ime</Form.Label>
-          <Form.Control type="text" name="Ime" placeholder="Pero" maxlength={255} defaultValue={clan.ime} required />
+          <Form.Label>ime</Form.Label>
+          <Form.Control type="text" name="ime" placeholder="Pero" maxlength={255} defaultValue={clan.ime} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlID="Prezime">
-          <Form.Label>Prezime</Form.Label>
-          <Form.Control type="text" name="Prezime" placeholder="Perić" maxlength={255} defaultValue={clan.Prezime} required />
+          <Form.Label>prezime</Form.Label>
+          <Form.Control type="text" name="prezime" placeholder="Perić" maxlength={255} defaultValue={clan.prezime} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlID="Mobitel">
-          <Form.Label>Mobitel</Form.Label>
-          <Form.Control type="text" name="Mobitel" placeholder="0911234567" defaultValue={clan.Mobitel} required />
+          <Form.Label>mobitel</Form.Label>
+          <Form.Control type="text" name="mobitel" placeholder="0911234567" defaultValue={clan.mobitel} required />
         </Form.Group>
 
         <Form.Group className="mb-3" controlID="OIB">
           <Form.Label>OIB</Form.Label>
-          <Form.Control type="text" name="OIB" placeholder="12345678910" defaultValue={clan.OIB} required />
+          <Form.Control type="text" name="oib" placeholder="12345678910" defaultValue={clan.oib} required />
         </Form.Group>
   
 

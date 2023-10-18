@@ -33,11 +33,12 @@ async dodajclan(kazeta) {
 
         this.dodajclan({
            ime: podaci.get('ime'),
-           prezime: podaci.get('prezime'),
+           Prezime: podaci.get('prezime'),
            OIB: podaci.get('OIB'),
-           mobitel: podaci.get('Mobitel'),
-           datum_uclanjenja: podaci.get('Datum_uclanjenja'),
+           Mobitel: podaci.get('Mobitel'),
+           Datum_uclanjenja: podaci.get('Datum_uclanjenja'),
            adresa: podaci.get('adresa'),
+     
         });
     }
 
@@ -63,9 +64,9 @@ async dodajclan(kazeta) {
                         <Form.Control type="text" name="OIB" placeholder="12345678910" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="adresa">
-                        <Form.Label>adresa</Form.Label>
-                        <Form.Control type="text" name="adresa" placeholder="Dodina 16" />
+                    <Form.Group className="mb-3" controlId="Adresa">
+                        <Form.Label>OIB</Form.Label>
+                        <Form.Control type="text" name="Adresa" placeholder="Dodina 16" />
                     </Form.Group>
 
 

@@ -20,13 +20,14 @@ export default function App() {
     <Routes>
     
       <Route path='/' Component={pocetna} />
+      <Route path='/izbornik' Component={izbornik} />
       <Route path='/nadzornaploca' Component={nadzornaploca} />
       <Route path='/kazeta' Component={kazeta} />
       <Route path="/kazeta/dodaj" Component= {dodajkazetu} />
       <Route path="/kazeta/:sifra" Component={promjenikazetu} />
       <Route path="/clan" Component={clan} />
-      <Route path="/clan/dodajclan" element={<dodajclan />} /> 
-      <Route path="/clan/:sifra" element={<promjeniclan />} />
+      <Route path="/clan/dodajclan" Component ={dodajclan} /> 
+      <Route path="/clan/:sifra" Component={promjeniclan} />
 
     </Routes>
   </Router>
