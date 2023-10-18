@@ -53,17 +53,17 @@ export default class dodajkazetu extends React.Component {
         //console.log(podaci.get('verificiran));
         // You can pass formData as a service body directly:
 
-        let Godina_izdanja=0;
+        let godina_izdanja=0;
         if(podaci.get('Godina_izdanja').trim().length>0){
-            Godina_izdanja=parseInt (podaci.get('Godina_izdanja'))
+            godina_izdanja=parseInt (podaci.get('godina_izdanja'))
         }
 
         this.dodajkazetu({
-            Naslov: podaci.get('Naslov'),
-            Godina_izdanja: Godina_izdanja,
-            Žanr: podaci.get('Žanr'),
-            Cijena_posudbe: parseFloat(podaci.get('Cijena_posudbe')),
-            Cijena_zakasnine: parseFloat(podaci.get('Cijena_zakasnine')),
+            naslov: podaci.get('naslov'),
+            godina_izdanja: godina_izdanja,
+            zanr: podaci.get('zanr'),
+            cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),
+            cijena_zakasnine: parseFloat(podaci.get('cijena_zakasnine')),
         })
 
     }

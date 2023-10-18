@@ -70,11 +70,11 @@ export default class promjenikazetu extends React.Component {
         // You can pass formData as a service body directly:
 
         this.promjenikazetu({
-            Naslov: podaci.get('Naslov'),
-            Godina_izdanja:podaci.get('Godina_izdanja'),
-            Žanr: podaci.get('Žanr'),
-            Cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),
-            Cijena_zakasnine: parseFloat(podaci.get('cijena_zakasnine')),
+            naslov: podaci.get('naslov'),
+            godina_izdanja:podaci.get('godina_izdanja'),
+            zanr: podaci.get('zanr'),
+            cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),
+            cijena_zakasnine: parseFloat(podaci.get('cijena_zakasnine')),
         })
       }
 

@@ -24,7 +24,7 @@ export default function App() {
       <Route path='/kazeta' Component={kazeta} />
       <Route path="/kazeta/dodaj" Component= {dodajkazetu} />
       <Route path="/kazeta/:sifra" Component={promjenikazetu} />
-      <Route path="/clan" element={<clan />} />
+      <Route path="/clan" Component={clan} />
       <Route path="/clan/dodajclan" element={<dodajclan />} /> 
       <Route path="/clan/:sifra" element={<promjeniclan />} />
 

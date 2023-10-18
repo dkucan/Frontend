@@ -63,7 +63,7 @@ export default class clan extends React.Component {
 
               <Card style={{ width: '18rem' }}>
                 <Card.Body>
-                  <Card.Title>{p.Ime} {p.Prezime}</Card.Title>
+                  <Card.Title>{p.ime} {p.prezime}</Card.Title>
                   <Card.Text>
                     {p.Mobitel}
                   </Card.Text>

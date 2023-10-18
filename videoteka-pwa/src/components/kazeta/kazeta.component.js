@@ -13,7 +13,7 @@ export default class kazeta extends React.Component {
         super(props);
 
         this.state={
-            kazeta:[]
+            kazete:[]
         };
     }
 
@@ -26,7 +26,7 @@ export default class kazeta extends React.Component {
         await kazetadataservice.get()
         .then(response=>{
             this.setState({
-                kazeta:response.data
+                kazete:response.data
             });
             console.log(response.data);
         })
@@ -44,7 +44,7 @@ export default class kazeta extends React.Component {
     }
     render() {
 
-        const{kazeta} = this.state;
+        const{kazete} = this.state;
 
         return (
             <Container>
@@ -63,7 +63,7 @@ export default class kazeta extends React.Component {
                         </tr>
                         </thead>
                         <tbody>
-                            {kazeta && kazeta.map((kazeta, index) => (
+                            {kazete && kazete.map((kazeta, index) => (
                                 <tr key={index}>
                                     <td>{kazeta.naslov}</td>
                                     <td className="broj">{kazeta.Godina_izdanja}</td>
