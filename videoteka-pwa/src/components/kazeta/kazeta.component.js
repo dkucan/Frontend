@@ -55,7 +55,7 @@ export default class kazeta extends React.Component {
                 Dodaj novu kazetu 
                 </a>
 
-                <Table stripped bordered hover responsive>
+                <Table striped bordered hover responsive>
                     <thead>
                         <tr>
                             <th>naslov</th>
