@@ -60,6 +60,7 @@ export default class kazeta extends React.Component {
                             <th>zanr</th>
                             <th>cijena_posudbe</th>
                             <th>cijena_zakasnine</th>
+                            <th>promjeni_kazetu</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -67,9 +68,9 @@ export default class kazeta extends React.Component {
                                 <tr key={index}>
                                     <td>{kazeta.naslov}</td>
                                     <td className="broj">{kazeta.godina_izdanja}</td>
-                                    <td className="broj">
+                                    <td className="broj">{kazeta.zanr}
                                         <NumericFormat
-                                        value={kazeta.Cijena_posudbe}
+                                        value={kazeta.zanr}
                                         displayType={'text'}
                                         thousandSeparator='.'
                                         decimalSeparator=','
@@ -78,7 +79,8 @@ export default class kazeta extends React.Component {
                                         fixedDecimalScale/>
                                     </td>
 
-                                    <td className="sredina">{kazeta.zanr}</td>
+                                    <td className="sredina">{kazeta.cijena_posudbe}</td>
+                                    <td className="sredina">{kazeta.cijena_zakasnine}</td>
                                     <td>
                                         <Link className="btn btn-primary gumb"
                                         to={'/kazeta/${kazeta.sifra}'}>
