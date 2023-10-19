@@ -9,12 +9,13 @@ import {FaEdit, FaTrash} from "react-icons/fa"
 
 export default class kazeta extends React.Component {
 
-    constructor (props) {
+    constructor (props){
         super(props);
 
         this.state={
-            kazete:[]
+            kazete: []
         };
+
     }
 
     componentDidMount(){
@@ -24,7 +25,7 @@ export default class kazeta extends React.Component {
     async dohvatikazetu(){
 
         await kazetadataservice.get()
-        .then(response=>{
+        .then(response=> {
             this.setState({
                 kazete:response.data
             });
@@ -34,17 +35,19 @@ export default class kazeta extends React.Component {
             console.log(e);
         });
     }
-    async obisikazetu(sifra){
-        const odgovor=await kazetadataservice.delete(sifra);
+
+    async obrisikazetu(sifra){
+        const odgovor= await kazetadataservice.delete(sifra);
         if(odgovor.ok){
             this.dohvatikazetu();
         }else{
             alert(odgovor.poruka);
         }
     }
-    render() {
 
-        const{kazete} = this.state;
+       render() {
+
+        const{ kazete } = this.state;
 
         return (
             <Container>
@@ -65,6 +68,7 @@ export default class kazeta extends React.Component {
                         </thead>
                         <tbody>
                             {kazete && kazete.map((kazeta, index) => (
+
                                 <tr key={index}>
                                     <td>{kazeta.naslov}</td>
                                     <td className="broj">{kazeta.godina_izdanja}</td>

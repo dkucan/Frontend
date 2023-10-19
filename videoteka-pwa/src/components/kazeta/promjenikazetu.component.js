@@ -7,10 +7,12 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
+
+
 export default class promjenikazetu extends React.Component {
 
-    constructor (props){
-        super (props);
+    constructor(props){
+        super(props);
 
         this.kazeta=this.dohvatikazetu();
         this.promjenikazetu=this.promjenikazetu.bind(this);
@@ -20,20 +22,24 @@ export default class promjenikazetu extends React.Component {
             kazeta:{}
 
         };
+
+
     }
 
+    
+    
     async dohvatikazetu(){
         let href=window.location.href;
         let niz= href.split('/');
         await kazetadataservice.getBySifra(niz[niz.length-1])
         .then(response=> {
             this.setState({
-                kazeta:response.data
+                kazeta: response.data
             });
-
             // console.log(response.data);
+
         })
-        .catch(e=>{
+        .catch(e => {
             console.log(e);
         });
 
@@ -41,10 +47,9 @@ export default class promjenikazetu extends React.Component {
 
     async promjenikazetu (kazeta) {
         // ovo mora bolje
-
         let href=window.location.href;
         let niz = href.split('/');
-        const odgovor= await kazetadataservice.put(niz[niz.length-1], kazeta);
+        const odgovor= await kazetadataservice.put(niz[niz.length-1],kazeta);
         if (odgovor.ok){
             //routing na kazete
             window.location.href='/kazeta';
@@ -66,16 +71,16 @@ export default class promjenikazetu extends React.Component {
         // console.log(fieldName, formData[fieldName]);
         //})
 
-        //console.log(podaci.get('verificiran'));
+        // console.log(podaci.get('verificiran'));
         // You can pass formData as a service body directly:
 
         this.promjenikazetu({
             naslov: podaci.get('naslov'),
-            godina_izdanja:podaci.get('godina_izdanja'),
+            godina_izdanja: parseInt(podaci.get('godina_izdanja')),
             zanr: podaci.get('zanr'),
             cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),
             cijena_zakasnine: parseFloat(podaci.get('cijena_zakasnine')),
-        })
+        });
       }
 
     render() {
@@ -88,7 +93,7 @@ export default class promjenikazetu extends React.Component {
 
                 <Form.Group className="mb-3" controlId="Naslov">
                 <Form.Label>naslov</Form.Label>
-                <Form.Control type="text" name="Naslov" placeholder="Naslov kazete"
+                <Form.Control type="text" name="naslov" placeholder="naslov kazete"
                 maxLength={255} defaultValue={kazeta.naslov} required />
                 </Form.Group>
 

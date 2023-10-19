@@ -46,7 +46,7 @@ export default class dodajkazetu extends React.Component {
 
         // Read the form data
         const podaci=new FormData(e.target);
-        // OBject.keys(formData). forEach(fieldName=> {
+        // Object.keys(formData). forEach(fieldName=> {
         // console.log(fieldName, formData[fieldName]);
         //})
 
@@ -54,7 +54,7 @@ export default class dodajkazetu extends React.Component {
         // You can pass formData as a service body directly:
 
         let godina_izdanja=0;
-        if(podaci.get('Godina_izdanja').trim().length>0){
+        if(podaci.get('godina_izdanja').trim().length>0){
             godina_izdanja=parseInt (podaci.get('godina_izdanja'))
         }
 
@@ -68,6 +68,7 @@ export default class dodajkazetu extends React.Component {
 
     }
 
+   
     render (){
         return (
             <Container>
@@ -92,7 +93,7 @@ export default class dodajkazetu extends React.Component {
 
                 <Form.Group className="mb-3" controlId="cijena_posudbe">
                 <Form.Label>cijena posudbe</Form.Label>
-                <Form.Control type="text" name="cijena posudbe" placeholder="100" />
+                <Form.Control type="text" name="cijena_posudbe" placeholder="100" />
                 <Form.Text className="text-muted">
                     ne smije biti negativna
                 </Form.Text>
@@ -100,7 +101,7 @@ export default class dodajkazetu extends React.Component {
 
                 <Form.Group className="mb-3" controlId="cijena_zakasnine">
                 <Form.Label>cijena_zakasnine</Form.Label>
-                <Form.Control type="text" name="cijena zakasnine" placeholder="100" />
+                <Form.Control type="text" name="cijena_zakasnine" placeholder="100" />
                 <Form.Text className="text-muted">
                     ne smije biti negativna
                 </Form.Text>
