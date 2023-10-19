@@ -74,23 +74,23 @@ export default class dodajkazetu extends React.Component {
                     
             <Form onSubmit={this.handleSubmit}>
 
-                <Form.Group className="mb-3" controlId="Naslov">
+                <Form.Group className="mb-3" controlId="naslov">
                     <Form.Label>naslov</Form.Label>
-                    <Form.Control type = "text" name="Naslov" placeholder="Naslov kazete" maxLength={255} required/>
+                    <Form.Control type = "text" name="naslov" placeholder="Naslov kazete" maxLength={255} required/>
                 </Form.Group>
                 
-                <Form.Group className="mb-3" controlId="Godina_izdanja">
+                <Form.Group className="mb-3" controlId="godina_izdanja">
                  <Form.Label>godina_izdanja</Form.Label>
-                 <Form.Control type="text" name="Godina_izdanja" placeholder="130" />   
+                 <Form.Control type="text" name="godina_izdanja" placeholder="130" />   
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Žanr">
+                <Form.Group className="mb-3" controlId="zanr">
                 <Form.Label>zanr</Form.Label>
-                <Form.Control type="text" name="žanr" maxLength={100} required/>
+                <Form.Control type="text" name="zanr" maxLength={100} required/>
                 
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Cijena_posudbe">
+                <Form.Group className="mb-3" controlId="cijena_posudbe">
                 <Form.Label>cijena posudbe</Form.Label>
                 <Form.Control type="text" name="cijena posudbe" placeholder="100" />
                 <Form.Text className="text-muted">
@@ -98,7 +98,7 @@ export default class dodajkazetu extends React.Component {
                 </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Cijena_zakasnine">
+                <Form.Group className="mb-3" controlId="cijena_zakasnine">
                 <Form.Label>cijena_zakasnine</Form.Label>
                 <Form.Control type="text" name="cijena zakasnine" placeholder="100" />
                 <Form.Text className="text-muted">

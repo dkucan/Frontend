@@ -8,6 +8,7 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 
 
+
 export default class promjeniclan extends React.Component {
 
   constructor (props) {
@@ -43,7 +44,7 @@ export default class promjeniclan extends React.Component {
     //ovo mora bolje
 
     let href=window.location.href;
-    let niz=href.split('niz');
+    let niz=href.split('/');
     const odgovor=await clandataservice.put(niz[niz.length-1], clan);
     if (odgovor.ok){
       window.location.href='/clan';
@@ -70,8 +71,9 @@ handleSubmit(e){
     ime: podaci.get('ime'),
     prezime: podaci.get('prezime'),
     mobitel: podaci.get('mobitel'),
-    oib: podaci.get('OIB'),
-    datum_uclanjenja:podaci.get('Datum_uclanjenja')
+    oib: podaci.get('oib'),
+    datum_uclanjenja:podaci.get('Datum_uclanjenja'),
+    adresa: podaci.get('adresa')
   });
 
 }
@@ -86,25 +88,31 @@ render(){
       <Form onSubmit={this.handleSubmit}>
 
 
-        <Form.Group className="mb-3" controlID="ime">
+        <Form.Group className="mb-3" controlId="ime">
           <Form.Label>ime</Form.Label>
-          <Form.Control type="text" name="ime" placeholder="Pero" maxlength={255} defaultValue={clan.ime} required />
+          <Form.Control type="text" name="ime" placeholder="Pero" maxLength={255} defaultValue={clan.ime} required />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlID="Prezime">
+        <Form.Group className="mb-3" controlId="prezime">
           <Form.Label>prezime</Form.Label>
-          <Form.Control type="text" name="prezime" placeholder="Perić" maxlength={255} defaultValue={clan.prezime} required />
+          <Form.Control type="text" name="prezime" placeholder="Perić" maxLength={255} defaultValue={clan.prezime} required />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlID="Mobitel">
+        <Form.Group className="mb-3" controlId="Mobitel">
           <Form.Label>mobitel</Form.Label>
           <Form.Control type="text" name="mobitel" placeholder="0911234567" defaultValue={clan.mobitel} required />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlID="OIB">
-          <Form.Label>OIB</Form.Label>
+        <Form.Group className="mb-3" controlId="OIB">
+          <Form.Label>oib</Form.Label>
           <Form.Control type="text" name="oib" placeholder="12345678910" defaultValue={clan.oib} required />
         </Form.Group>
+
+        <Form.Group className="mb-3" controlId="adresa">
+          <Form.Label>adresa</Form.Label>
+          <Form.Control type="text" name="adresa" placeholder="Dodina 16" defaultValue={clan.adresa} required />
+        </Form.Group>
+
   
 
             <Row>
@@ -113,7 +121,7 @@ render(){
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">
-              Promjeni člana
+              Promjeni clana
             </Button>
             </Col>
           </Row>

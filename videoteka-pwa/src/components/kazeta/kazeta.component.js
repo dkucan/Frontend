@@ -66,7 +66,7 @@ export default class kazeta extends React.Component {
                             {kazete && kazete.map((kazeta, index) => (
                                 <tr key={index}>
                                     <td>{kazeta.naslov}</td>
-                                    <td className="broj">{kazeta.Godina_izdanja}</td>
+                                    <td className="broj">{kazeta.godina_izdanja}</td>
                                     <td className="broj">
                                         <NumericFormat
                                         value={kazeta.Cijena_posudbe}
@@ -78,7 +78,7 @@ export default class kazeta extends React.Component {
                                         fixedDecimalScale/>
                                     </td>
 
-                                    <td className="sredina">{kazeta.žanr}</td>
+                                    <td className="sredina">{kazeta.zanr}</td>
                                     <td>
                                         <Link className="btn btn-primary gumb"
                                         to={'/kazeta/${kazeta.sifra}'}>
@@ -86,7 +86,7 @@ export default class kazeta extends React.Component {
                                         </Link>
 
                                         <Button variant="danger" className="gumb"
-                                        onClick={()=>this.obrisiKazetu(kazeta.sifra)}>
+                                        onClick={()=>this.obrisikazetu(kazeta.sifra)}>
                                            
                                             <FaTrash />
                                         </Button>

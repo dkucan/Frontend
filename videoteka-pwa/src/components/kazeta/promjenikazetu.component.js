@@ -87,30 +87,30 @@ export default class promjenikazetu extends React.Component {
             <Form onSubmit={this.handleSubmit}>
 
                 <Form.Group className="mb-3" controlId="Naslov">
-                <Form.Label>Naslov</Form.Label>
+                <Form.Label>naslov</Form.Label>
                 <Form.Control type="text" name="Naslov" placeholder="Naslov kazete"
                 maxLength={255} defaultValue={kazeta.naslov} required />
                 </Form.Group>
 
-                <Form.Group className="mb-3" ControlId="Godina_izdanja">
-                <Form.Label>Godina_izdanja</Form.Label>
-                <Form.Control type="text" name="Godina_izdanja" defaultValue={kazeta.Godina_izdanja} placeholder="130" />
+                <Form.Group className="mb-3" controlId="godina_izdanja">
+                <Form.Label>godina_izdanja</Form.Label>
+                <Form.Control type="text" name="godina_izdanja" defaultValue={kazeta.godina_izdanja} placeholder="130" />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Žanr">
-                <Form.Label>Žanr</Form.Label>
-                <Form.Control type="text" name="Žanr" placeholder="Žanr"
-                maxLength={255} defaultValue={kazeta.žanr} required />    
+                <Form.Group className="mb-3" controlId="zanr">
+                <Form.Label>zanr</Form.Label>
+                <Form.Control type="text" name="zanr" placeholder="zanr"
+                maxLength={255} defaultValue={kazeta.zanr} required />    
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="cijena_posudbe">
-                <Form.Label>Cijena_posudbe</Form.Label>
-                <Form.Control type="text" name="cijena_posudbe" defaultValue={kazeta.Cijena_posudbe} placeholder="500" />
+                <Form.Label>cijena_posudbe</Form.Label>
+                <Form.Control type="text" name="cijena_posudbe" defaultValue={kazeta.cijena_posudbe} placeholder="500" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="cijena_zakasnine">
-                <Form.Label>Cijena_zakasnine</Form.Label>
-                <Form.Control type="text" name="cijena_zakasnine" defaultValue={kazeta.Cijena_zakasnine} placeholder="500" />
+                <Form.Label>cijena_zakasnine</Form.Label>
+                <Form.Control type="text" name="cijena_zakasnine" defaultValue={kazeta.cijena_zakasnine} placeholder="500" />
                 </Form.Group>
 
                 <Row>

@@ -34,9 +34,9 @@ async dodajclan(kazeta) {
         this.dodajclan({
            ime: podaci.get('ime'),
            Prezime: podaci.get('prezime'),
-           OIB: podaci.get('OIB'),
-           Mobitel: podaci.get('Mobitel'),
-           Datum_uclanjenja: podaci.get('Datum_uclanjenja'),
+           oib: podaci.get('oib'),
+           mobitel: podaci.get('mobitel'),
+           datum_uclanjenja: podaci.get('datum_uclanjenja'),
            adresa: podaci.get('adresa'),
      
         });
@@ -48,25 +48,30 @@ async dodajclan(kazeta) {
         return (
             <Container>
                 <Form onSubmit={this.handleSubmit}>
-  
-                <Form.Group className="mb-3" controlId="Prezime">
-                    <Form.Label>Prezime</Form.Label>
-                    <Form.Control type="text" name="Prezime" placeholder="Perić" required />
+
+                <Form.Group className="mb-3" controlId="ime">
+                    <Form.Label>ime</Form.Label>
+                    <Form.Control type="text" name="ime" placeholder="Pero" required />
+                    </Form.Group>
+
+                <Form.Group className="mb-3" controlId="prezime">
+                    <Form.Label>prezime</Form.Label>
+                    <Form.Control type="text" name="prezime" placeholder="Perić" required />
                     </Form.Group>
 
                     <Form.Group className="mb-3" controlId="mobitel">
-                        <Form.Label>Mobitel</Form.Label>
+                        <Form.Label>mobitel</Form.Label>
                         <Form.Control type="text" name="mobitel" placeholder="0911234567" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="OIB">
-                        <Form.Label>OIB</Form.Label>
-                        <Form.Control type="text" name="OIB" placeholder="12345678910" />
+                    <Form.Group className="mb-3" controlId="oib">
+                        <Form.Label>oib</Form.Label>
+                        <Form.Control type="text" name="oib" placeholder="12345678910" />
                     </Form.Group>
 
-                    <Form.Group className="mb-3" controlId="Adresa">
-                        <Form.Label>OIB</Form.Label>
-                        <Form.Control type="text" name="Adresa" placeholder="Dodina 16" />
+                    <Form.Group className="mb-3" controlId="adresa">
+                        <Form.Label>adresa</Form.Label>
+                        <Form.Control type="text" name="adresa" placeholder="Dodina 16" />
                     </Form.Group>
 
 
