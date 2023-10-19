@@ -25,7 +25,7 @@ class kazetadataservice{
 
 
     async post(kazeta){
-        //console.log(smjer);
+        //console.log(kazeta);
         const odgovor = await http.post('/kazeta',kazeta)
            .then(response => {
              return {ok:true, poruka: 'Unio kazetu'}; // return u odgovor
@@ -39,7 +39,7 @@ class kazetadataservice{
     }
 
     async put(sifra,kazeta){
-        //console.log(smjer);
+        //console.log(kazeta);
         const odgovor = await http.put('/kazeta/' + sifra,kazeta)
            .then(response => {
              return {ok:true, poruka: 'Promjenio kazetu'}; // return u odgovor
