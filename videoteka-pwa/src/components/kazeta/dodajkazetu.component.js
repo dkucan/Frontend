@@ -73,7 +73,7 @@ export default class dodajkazetu extends React.Component {
         return (
             <Container>
                     
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handlesubmit}>
 
                 <Form.Group className="mb-3" controlId="naslov">
                     <Form.Label>naslov</Form.Label>
@@ -113,7 +113,7 @@ export default class dodajkazetu extends React.Component {
                     </Col>
                     <Col>
                     <Button variant="primary" className="gumb" type="submit">
-                        DodajKazetu
+                        Dodaj Kazetu
                     </Button>
                     </Col>
                 </Row>

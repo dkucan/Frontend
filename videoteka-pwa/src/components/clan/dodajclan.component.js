@@ -13,10 +13,10 @@ export default class dodajclan extends React.Component {
 constructor (props) {
     super(props);
     this.dodajclan=this.dodajclan.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
+    this.handlesubmit=this.handlesubmit.bind(this);
 }
-async dodajclan(kazeta) {
-    const odgovor=await clandataservice.post(kazeta);
+async dodajclan(clan) {
+    const odgovor=await clandataservice.post(clan);
     if (odgovor.ok){
         //routing na kazete
         window.location.href='/clan';
@@ -47,7 +47,7 @@ async dodajclan(kazeta) {
     render () {
         return (
             <Container>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handlesubmit}>
 
                 <Form.Group className="mb-3" controlId="ime">
                     <Form.Label>ime</Form.Label>
@@ -73,6 +73,11 @@ async dodajclan(kazeta) {
                         <Form.Label>adresa</Form.Label>
                         <Form.Control type="text" name="adresa" placeholder="Dodina 16" />
                     </Form.Group>
+                    
+                    <Form.Group classNeme="mb-3" controlId="datum_uclanjenja">
+                        <Form.Label>datum_uclanjenja</Form.Label>
+                        <Form.Control type="text" name="datum_uclanjenja" placeholder="yyyy-mm-dd" />
+                    </Form.Group>
 
 
                     <Row>
@@ -81,7 +86,7 @@ async dodajclan(kazeta) {
                         </Col>
                         <Col>
                         <Button variant="primary" className="gumb" type = "submit">
-                            DodajClana
+                            Dodaj Clana
                         </Button>
                         </Col>
                     </Row>

@@ -18,12 +18,13 @@ export default function App() {
 
    
     <Routes>
-    
+  
+
       <Route path='/' Component={pocetna} />
       <Route path='/izbornik' Component={izbornik} />
       <Route path='/nadzornaploca' Component={nadzornaploca} />
       <Route path='/kazeta' Component={kazeta} />
-      <Route path="/kazeta/dodaj" Component= {dodajkazetu} />
+      <Route path="/kazeta/dodajkazetu" Component= {dodajkazetu} />
       <Route path="/kazeta/:sifra" Component={promjenikazetu} />
       <Route path="/clan" Component={clan} />
       <Route path="/clan/dodajclan" Component ={dodajclan} /> 

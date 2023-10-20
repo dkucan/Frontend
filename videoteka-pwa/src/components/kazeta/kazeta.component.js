@@ -11,7 +11,8 @@ export default class kazeta extends React.Component {
 
     constructor (props){
         super(props);
-
+        
+        
         this.state={
             kazete: []
         };
@@ -51,7 +52,7 @@ export default class kazeta extends React.Component {
 
         return (
             <Container>
-            <a href="/kazeta/dodaj" className=" btn btn-success gumb">
+            <a href="/kazeta/dodajkazetu" className=" btn btn-success gumb">
                 Dodaj novu kazetu 
                 </a>
 
@@ -72,22 +73,25 @@ export default class kazeta extends React.Component {
                                 <tr key={index}>
                                     <td>{kazeta.naslov}</td>
                                     <td className="broj">{kazeta.godina_izdanja}</td>
-                                    <td className="broj">{kazeta.zanr}
-                                        <NumericFormat
-                                        value={kazeta.zanr}
-                                        displayType={'text'}
-                                        thousandSeparator='.'
-                                        decimalSeparator=','
-                                        prefix={'€'}
-                                        decimalScale={2}
-                                        fixedDecimalScale/>
-                                    </td>
+                                    <td className="broj">{kazeta.zanr}</td>
 
-                                    <td className="sredina">{kazeta.cijena_posudbe}</td>
-                                    <td className="sredina">{kazeta.cijena_zakasnine}</td>
+                                    <td className="sredina">
+                                    <NumericFormat
+                                        value={kazeta.cijena_posudbe}
+                                        displayType={'text'}
+                                        prefix={'€'}
+                                        />
+                                    </td>
+                                    <td className="sredina">
+                                    <NumericFormat
+                                        value={kazeta.cijena_zakasnine}
+                                        displayType={'text'}
+                                        prefix={'€'}
+                                        />
+                                    </td>
                                     <td>
                                         <Link className="btn btn-primary gumb"
-                                        to={'/kazeta/${kazeta.sifra}'}>
+                                        to={`/kazeta/${kazeta.sifra}`}>
                                             <FaEdit />
                                         </Link>
 

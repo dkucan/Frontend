@@ -45,7 +45,7 @@ export default class promjenikazetu extends React.Component {
 
     }
 
-    async promjenikazetu (kazeta) {
+    async promjenikazetu(kazeta) {
         // ovo mora bolje
         let href=window.location.href;
         let niz = href.split('/');
@@ -78,8 +78,8 @@ export default class promjenikazetu extends React.Component {
             naslov: podaci.get('naslov'),
             godina_izdanja: parseInt(podaci.get('godina_izdanja')),
             zanr: podaci.get('zanr'),
-            cijena_posudbe: parseFloat(podaci.get('cijena_posudbe')),
-            cijena_zakasnine: parseFloat(podaci.get('cijena_zakasnine')),
+            cijena_posudbe: parseInt(podaci.get('cijena_posudbe')),
+            cijena_zakasnine: parseInt(podaci.get('cijena_zakasnine'))
         });
       }
 
@@ -89,46 +89,49 @@ export default class promjenikazetu extends React.Component {
 
     return(
         <Container>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handlesubmit}>
 
-                <Form.Group className="mb-3" controlId="Naslov">
+                <Form.Group className="mb-3" controlId="naslov">
                 <Form.Label>naslov</Form.Label>
-                <Form.Control type="text" name="naslov" placeholder="naslov kazete"
+                <Form.Control type="text" name="naslov"
                 maxLength={255} defaultValue={kazeta.naslov} required />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="godina_izdanja">
                 <Form.Label>godina_izdanja</Form.Label>
-                <Form.Control type="text" name="godina_izdanja" defaultValue={kazeta.godina_izdanja} placeholder="130" />
+                <Form.Control type="text" name="godina_izdanja" defaultValue={kazeta.godina_izdanja} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="zanr">
                 <Form.Label>zanr</Form.Label>
-                <Form.Control type="text" name="zanr" placeholder="zanr"
+                <Form.Control type="text" name="zanr"
                 maxLength={255} defaultValue={kazeta.zanr} required />    
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="cijena_posudbe">
                 <Form.Label>cijena_posudbe</Form.Label>
-                <Form.Control type="text" name="cijena_posudbe" defaultValue={kazeta.cijena_posudbe} placeholder="500" />
+                <Form.Control type="text" name="cijena_posudbe" defaultValue={kazeta.cijena_posudbe} />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="cijena_zakasnine">
                 <Form.Label>cijena_zakasnine</Form.Label>
-                <Form.Control type="text" name="cijena_zakasnine" defaultValue={kazeta.cijena_zakasnine} placeholder="500" />
+                <Form.Control type="text" name="cijena_zakasnine" defaultValue={kazeta.cijena_zakasnine} />
                 </Form.Group>
+                
 
-                <Row>
+            
+            
+            <Row>
             <Col>
-              <Link className="btn btn-danger gumb" to={`/kazete`}>Odustani</Link>
+            <Link className="btn btn-danger gumb" to={`/kazeta`}>Odustani</Link>
             </Col>
             <Col>
             <Button variant="primary" className="gumb" type="submit">
               Promjeni kazetu 
             </Button>
             </Col>
-          </Row>
-        </Form>
+            </Row>
+            </Form>
 
         
         </Container>

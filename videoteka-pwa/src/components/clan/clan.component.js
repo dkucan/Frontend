@@ -16,12 +16,12 @@ export default class clan extends React.Component {
      this.dohvaticlan=this.dohvaticlan.bind(this);
    
      this.state={
-       clan: [],
+       clanovi: [],
        prikaziModal: false
      };
     }
 
-    otvoriModal=() => this.setState({prikaziModal: true});
+ otvoriModal=() => this.setState({prikaziModal: true});
  zatvoriModal= () => this.setState({prikaziModal: false});
 
  componentDidMount() {
@@ -31,7 +31,7 @@ export default class clan extends React.Component {
   clandataservice.getAll()
   .then(response=> {
     this.setState({
-      clan:response.data
+      clanovi:response.data
     });
   })
   .catch(e=>{
@@ -51,13 +51,13 @@ export default class clan extends React.Component {
  }
 
   render() {
-    const { clan} = this.state;
+    const { clanovi} = this.state;
     return (
 
     <Container>
-      <a href="/clan/dodaj" className="btn btn-success gumb">Dodaj novog clana</a>
+      <a href="/clan/dodajclan" className="btn btn-success gumb">Dodaj novog clana</a>
     <Row>
-      {clan && clan.map((p) => (
+      {clanovi && clanovi.map((p) => (
            
            <Col key={p.sifra} sm={12} lg={3} md={3}>
 

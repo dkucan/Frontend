@@ -16,7 +16,7 @@ export default class promjeniclan extends React.Component {
 
     this.clan=this.dohvaticlan();
     this.promjeniclan=this.promjeniclan.bind(this);
-    this.handleSubmit=this.handleSubmit.bind(this);
+    this.handlesubmit=this.handlesubmit.bind(this);
 
 
     this.state={
@@ -54,7 +54,7 @@ export default class promjeniclan extends React.Component {
     }
   }
 
-handleSubmit(e){
+handlesubmit(e){
   // Prevent the browser from reloading the page
   e.preventDefault();
 
@@ -72,7 +72,7 @@ handleSubmit(e){
     prezime: podaci.get('prezime'),
     mobitel: podaci.get('mobitel'),
     oib: podaci.get('oib'),
-    datum_uclanjenja:podaci.get('Datum_uclanjenja'),
+    datum_uclanjenja:podaci.get('datum_uclanjenja'),
     adresa: podaci.get('adresa')
   });
 
@@ -85,7 +85,7 @@ render(){
 
   return (
     <Container>
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handlesubmit}>
 
 
         <Form.Group className="mb-3" controlId="ime">
@@ -112,6 +112,12 @@ render(){
           <Form.Label>adresa</Form.Label>
           <Form.Control type="text" name="adresa" placeholder="Dodina 16" defaultValue={clan.adresa} required />
         </Form.Group>
+
+        <Form.Group className="mb-3" controlId="datum_uclanjenja">
+          <Form.Label>datum_uclanjenja</Form.Label>
+          <Form.Control type="text" name="datum_uclanjenja" defaultValue={clan.datum_uclanjenja} required />
+        </Form.Group>
+
 
   
 
