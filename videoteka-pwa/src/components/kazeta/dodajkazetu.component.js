@@ -82,7 +82,7 @@ export default class dodajkazetu extends React.Component {
                 
                 <Form.Group className="mb-3" controlId="godina_izdanja">
                  <Form.Label>godina_izdanja</Form.Label>
-                 <Form.Control type="text" name="godina_izdanja" placeholder="130" />   
+                 <Form.Control type="text" name="godina_izdanja" placeholder="1900" />   
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="zanr">

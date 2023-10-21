@@ -74,7 +74,7 @@ async dodajclan(clan) {
                         <Form.Control type="text" name="adresa" placeholder="Dodina 16" />
                     </Form.Group>
                     
-                    <Form.Group classNeme="mb-3" controlId="datum_uclanjenja">
+                    <Form.Group className="mb-3" controlId="datum_uclanjenja">
                         <Form.Label>datum_uclanjenja</Form.Label>
                         <Form.Control type="text" name="datum_uclanjenja" placeholder="yyyy-mm-dd" />
                     </Form.Group>

@@ -1,16 +1,20 @@
 import React from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import izbornik from './components/izbornik.component';
-import pocetna from './components/pocetna.component';
-import nadzornaploca from './components/nadzornaploca.component';
-import kazeta from './components/kazeta/kazeta.component';
-import dodajkazetu from './components/kazeta/dodajkazetu.component';
-import promjenikazetu from './components/kazeta/promjenikazetu.component';
-import clan from './components/clan/clan.component';
-import dodajclan from './components/clan/dodajclan.component';
-import promjeniclan from './components/clan/promjeniclan.component';
+import Izbornik from './components/izbornik.component';
+import Pocetna from './components/pocetna.component';
+import Nadzornaploca from './components/nadzornaploca.component';
+import Kazeta from './components/kazeta/kazeta.component';
+import Dodajkazetu from './components/kazeta/dodajkazetu.component';
+import Promjenikazetu from './components/kazeta/promjenikazetu.component';
+import Clan from './components/clan/clan.component';
+import Dodajclan from './components/clan/dodajclan.component';
+import Promjeniclan from './components/clan/promjeniclan.component';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Posudba from './components/posudba/posudba.component';
+import Dodajposudbu from './components/posudba/dodajposudbu.component';
+import Promjeniposudbu from './components/posudba/promjeniposudbu.component';
+
 
 export default function App() {
   return (
@@ -20,15 +24,18 @@ export default function App() {
     <Routes>
   
 
-      <Route path='/' Component={pocetna} />
-      <Route path='/izbornik' Component={izbornik} />
-      <Route path='/nadzornaploca' Component={nadzornaploca} />
-      <Route path='/kazeta' Component={kazeta} />
-      <Route path="/kazeta/dodajkazetu" Component= {dodajkazetu} />
-      <Route path="/kazeta/:sifra" Component={promjenikazetu} />
-      <Route path="/clan" Component={clan} />
-      <Route path="/clan/dodajclan" Component ={dodajclan} /> 
-      <Route path="/clan/:sifra" Component={promjeniclan} />
+      <Route path='/' Component={Pocetna} />
+      <Route path='/izbornik' Component={Izbornik} />
+      <Route path='/nadzornaploca' Component={Nadzornaploca} />
+      <Route path='/kazeta' Component={Kazeta} />
+      <Route path="/kazeta/dodajkazetu" Component= {Dodajkazetu} />
+      <Route path="/kazeta/:sifra" Component={Promjenikazetu} />
+      <Route path="/clan" Component={Clan} />
+      <Route path="/clan/dodajclan" Component ={Dodajclan} /> 
+      <Route path="/clan/:sifra" Component={Promjeniclan} />
+      <Route path="/posudba" Component = {Posudba} />
+      <Route path="/posudba/dodajposudbu" Component={Dodajposudbu} />
+      <Route path="/posudba/:sifra" Component={Promjeniposudbu} />
 
     </Routes>
   </Router>
