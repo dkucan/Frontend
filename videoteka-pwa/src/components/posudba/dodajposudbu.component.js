@@ -9,17 +9,17 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 import moment from 'moment';
 
-export default class Dodajposudbu extends React.Component {
+export default class DodajPosudbu extends React.Component {
 
     constructor (props) {
         super(props);
-        const token = localStorage.getItem('Bearer');
-        if (token==null || token===''){
-            window.location.href='/';
-        }
-        this.Dodajposudbu.this.Dodajposudbu.bind(this);
+
+        
+      
+        this.dodajposudbu=this.dodajPosudbu.bind(this);
         this.handleSubmit=this.handleSubmit.bind(this);
-        this.Dohvatikazetu=this.Dohvatikazetu.bind(this);
+        this.dohvatikazetu=this.dohvatiKazetu.bind(this);
+        
 
         this.state={
             kazeta:[],
@@ -29,10 +29,10 @@ export default class Dodajposudbu extends React.Component {
 
     componentDidMount(){
         //console.log ("Dohvaćam kazete");
-        this.Dohvatikazetu();
+        this.dohvatiKazetu();
     }
 
-    async Dodajposudbu(posudba) {
+    async dodajPosudbu(posudba) {
         const odgovor=await PosudbaDataService.post(posudba);
         if (odgovor.ok){
             //routing na kazete
@@ -43,7 +43,7 @@ export default class Dodajposudbu extends React.Component {
         }
     }
 
-    async Dohvatikazetu () {
+    async dohvatiKazetu () {
 
         await kazetadataservice.get()
         .then(response => {
@@ -62,19 +62,25 @@ export default class Dodajposudbu extends React.Component {
     handleSubmit(e){
         e.preventDefault();
         const podaci=new FormData(e.target);
-        console.log(podaci.get('Datum_posudbe'));
-        console.log(podaci.get('Datum_vracanja'));
-        console.log(podaci.get('Zakasnina'));
-        console.log(podaci.get('Clan'));
 
-        let datum = moment.utc(podaci.get('Datum_posudbe')) + '' + podaci.get('Datum_vracanja');
+        console.log(podaci.get('clan'));
+        console.log(podaci.get('naslov'));
+        console.log(podaci.get('datum_posudbe'));
+        console.log(podaci.get('datum_vracanja'));
+        console.log(podaci.get('zakasnina'));
+        
+
+        let datum = moment.utc(podaci.get('datum_posudbe')) + '' + podaci.get('datum_vracanja');
         console.log(datum);
 
-        this.Dodajposudbu({
-            Datum_posudbe: podaci.get('Datum_posudbe'),
-            Datum_vracanja: podaci.get('Datum_vracanja'),
-            Zakasnina: podaci.get('Zakasnina'),
-            Clan: podaci.get('Clan'),
+        this.dodajposudbu({
+
+            clan: podaci.get('clan'),
+            naslov: podaci.get('naslov'),
+            datum_posudbe: podaci.get('datum_posudbe'),
+            datum_vracanja: podaci.get('datum_vracanja'),
+            zakasnina: podaci.get('zakasnina'),
+            
         });
     }
 
@@ -86,13 +92,13 @@ export default class Dodajposudbu extends React.Component {
             <Container>
             <Form onSubmit={this.handleSubmit}>
 
-              <Form.Group className="mb-3" controlId="Datum_posudbe">
-                <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="text" name="Datum_posudbe" placeholder="" maxLength={255} required/>
+              <Form.Group className="mb-3" controlId="clan">
+                <Form.Label>clan</Form.Label>
+                <Form.Control type="text" name="clan" placeholder="" maxLength={255} required/>
                 </Form.Group>  
 
-                <Form.Group className="mb-3" controlId="kazeta">
-                <Form.Label>kazeta</Form.Label>
+                <Form.Group className="mb-3" controlId="naslov">
+                <Form.Label>naslov</Form.Label>
                 <Form.Select onChange={e => {
                 this.setState({ sifrakazeta: e.target.value});
                 }}>
@@ -103,25 +109,22 @@ export default class Dodajposudbu extends React.Component {
             </Form.Select>
           </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Datum_posudbe">
-                <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="date" name="Datum_posudbe" placeholder="" />
+                <Form.Group className="mb-3" controlId="datum_posudbe">
+                <Form.Label>datum_posudbe</Form.Label>
+                <Form.Control type="datetime" name="datum_posudbe" placeholder="" />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Datum_vracanja">
-<               Form.Label>Datum_vracanja</Form.Label>
-                <Form.Control type="date" name="Datum_vracanja" placeholder="" />
+                <Form.Group className="mb-3" controlId="datum_vracanja">
+<               Form.Label>datum_vracanja</Form.Label>
+                <Form.Control type="datetime" name="datum_vracanja" placeholder="" />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Zakasnina">
-<               Form.Label>Zakasnina</Form.Label>
-                <Form.Control type="text" name="Zakasnina" placeholder="" />
+                <Form.Group className="mb-3" controlId="zakasnina">
+<               Form.Label>zakasnina</Form.Label>
+                <Form.Control type="text" name="zakasnina" placeholder="" />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="Clan">
-<               Form.Label>Clan</Form.Label>
-                <Form.Control type="text" name="Clan" placeholder="" />
-                </Form.Group>
+        
 
                 <Row>
                 <Col>
@@ -133,6 +136,13 @@ export default class Dodajposudbu extends React.Component {
                 </Button>
                 </Col>
                 </Row>
+                
+
+
+
+
+
+                
 
 
                 </Form>

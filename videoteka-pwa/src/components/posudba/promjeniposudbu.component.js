@@ -18,34 +18,34 @@ export default class Promjeniposudbu extends React.Component {
 
   constructor(props) {
     super(props);
-    const token = localStorage.getItem('Bearer');
-    if(token==null || token===''){
-      window.location.href='/';
-    }
+  
 
-    this.posudba = this.dohvatiposudbu();
-    this.Promjeniposudbu = this.Promjeniposudbu.bind(this);
+    this.posudba = this.dohvatiPosudbu();
+    this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.kazeta = this.dohvatikazetu();
-    this.clan = this.dohvaticlan();
-    this.obrisiclan = this.obrisiclan.bind(this);
-    this.traziclan = this.traziclan.bind(this);
-    this.dodajclan = this.dodajclan.bind(this);
+    this.clanovi = this.dohvaticlanovi();
+    this.obrisiclanovi = this.obrisiclanovi.bind(this);
+    this.traziclanove = this.traziclanove.bind(this);
+    this.dodajclana = this.dodajclana.bind(this);
 
 
     this.state = {
-      posudba: {},
-      kazeta: [],
-      clan: [],
-      sifrakazeta:0,
-      pronadeniClan: []
+      
+      clan:[],
+      brojKazeta:[],
+      Dtum_posudbe:[],
+      Datum_vracanja:[],
+      zakasnina:[],
+      sifraclan:{},
+      sifra:[]
     };
   }
 
 
 
 
-  async dohvatiposudbu() {
+  async dohvatiPosudbu() {
     // ovo mora bolje
     //console.log('Dohvaćam posudbu');
     let href = window.location.href;
@@ -56,7 +56,7 @@ export default class Promjeniposudbu extends React.Component {
         g.Datum_posudbe = moment.utc(g.Datum_posudbe).format("yyyy-mm-dd");
         g.Datum_vracanja = moment.utc(g.Datum_vracanja).format("yyyy-mm-dd");
         
-        //console.log(g.vrijemePocetka);
+        //console.log(g.Datum_posudbe);
         this.setState({
           posudba: g
         });
@@ -69,7 +69,7 @@ export default class Promjeniposudbu extends React.Component {
 
   
 
-  async Promjeniposudbu(posudba) {
+  async promjeniposudbu(posudba) {
     const odgovor = await PosudbaDataService.post(posudba);
     if(odgovor.ok){
       // routing na kazete
@@ -97,13 +97,13 @@ export default class Promjeniposudbu extends React.Component {
       });
   }
 
-  async dohvaticlan() {
+  async dohvaticlanovi() {
     let href = window.location.href;
     let niz = href.split('/'); 
-    await PosudbaDataService.getclan(niz[niz.length-1])
+    await PosudbaDataService.getClanova(niz[niz.length-1])
        .then(response => {
          this.setState({
-           clan: response.data
+           clanovi: response.data
          });
  
         // console.log(response.data);
@@ -115,9 +115,9 @@ export default class Promjeniposudbu extends React.Component {
 
    
 
-   async traziclan( uvjet) {
+   async traziclanove(uvjet) {
 
-    await clandataservice.traziclan( uvjet)
+    await clandataservice.traziclanove( uvjet)
        .then(response => {
          this.setState({
           pronadeniclan: response.data
@@ -130,19 +130,19 @@ export default class Promjeniposudbu extends React.Component {
        });
    }
 
-   async obrisiclan(posudba, clan){
-    const odgovor = await PosudbaDataService.obrisiclan(posudba, clan);
+   async obrisiclanovi(posudba, clan){
+    const odgovor = await PosudbaDataService.obrisiclanovi(posudba, clan);
     if(odgovor.ok){
-     this.dohvaticlan();
+     this.dohvaticlanovi();
     }else{
      //this.otvoriModal();
     }
    }
 
-   async dodajclan(posudba, clan){
-    const odgovor = await PosudbaDataService.dodajclan(posudba, clan);
+   async dodajclana(posudba, clan){
+    const odgovor = await PosudbaDataService.dodajclana(posudba, clan);
     if(odgovor.ok){
-     this.dohvaticlan();
+     this.dohvaticlanovi();
     }else{
     //this.otvoriModal();
     }
@@ -152,14 +152,14 @@ export default class Promjeniposudbu extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const podaci = new FormData(e.target);
-    console.log(podaci.get('Datum_posudbe'));
-    console.log(podaci.get('Datum_vracanja'));
+    console.log(podaci.get('datum_posudbe'));
+    console.log(podaci.get('datum_vracanja'));
     let datum = moment.utc(podaci.get('Datum_posudbe') + ' ' + podaci.get('Datum_vracanja'));
     console.log(datum);
 
-    this.Promjeniposudbu({
-      naziv: podaci.get('Datum_posudbe'),
-      Datum_posudbe: datum,
+    this.promjeniPosudbu({
+      Datum_posudbe: podaci.get('Datum_posudbe'),
+      Datum_vracanja: podaci.get('Datum_vracanja'),
       sifrakazeta: this.state.sifrakazeta
     });
     
@@ -174,13 +174,13 @@ export default class Promjeniposudbu extends React.Component {
 
 
     const obradiTrazenje = (uvjet) => {
-      this.traziclan( uvjet);
+      this.traziclanove( uvjet);
     };
 
-    const odabraniClan = (clan) => {
+    const odabraniclan = (clan) => {
       //console.log(posudba.sifra + ' - ' + clan[0].sifra);
       if(clan.length>0){
-        this.dodajclan(posudba.sifra, clan[0].sifra);
+        this.dodajclana(posudba.sifra, clan[0].sifra);
       }
      
     };
@@ -193,8 +193,14 @@ export default class Promjeniposudbu extends React.Component {
           <Col key="1" sm={12} lg={6} md={6}>
               <Form.Group className="mb-3" controlId="Datum_posudbe">
                 <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="text" name="Datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.Datum_posudbe}  required/>
+                <Form.Control type="datetime" name="Datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.Datum_posudbe}  required/>
               </Form.Group>
+
+              <Form.Group className="mb-3" controlId="Datum_vracanja">
+                <Form.Label>Datum_vracanja</Form.Label>
+                <Form.Control type="datetime" name="Datum_vracanja" placeholder="" maxLength={255} defaultValue={posudba.Datum_vracanja}  required/>
+              </Form.Group>
+
 
               <Form.Group className="mb-3" controlId="Kazeta">
                 <Form.Label>Kazeta</Form.Label>
@@ -210,12 +216,12 @@ export default class Promjeniposudbu extends React.Component {
 
               <Form.Group className="mb-3" controlId="Datum_posudbe">
                 <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="date" name="Datum_posudbe" placeholder="" defaultValue={posudba.Datum_posudbe}  />
+                <Form.Control type="datetime" name="Datum_posudbe" placeholder="" defaultValue={posudba.Datum_posudbe}  />
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="Datum_vracanja">
                 <Form.Label>Datum_vracanja</Form.Label>
-                <Form.Control type="date" name="Datum_vracanja" placeholder="" defaultValue={posudba.Datum_vracanja}  />
+                <Form.Control type="datetime" name="Datum_vracanja" placeholder="" defaultValue={posudba.Datum_vracanja}  />
               </Form.Group>
 
               <Row>
@@ -229,7 +235,7 @@ export default class Promjeniposudbu extends React.Component {
                 </Col>
               </Row>
           </Col>
-          <Col key="2" sm={12} lg={6} md={6} className="clanoviposudba">
+          <Col key="2" sm={12} lg={6} md={6} className="clanposudba">
           <Form.Group className="mb-3" controlId="uvjet">
                 <Form.Label>Traži clana</Form.Label>
                 
@@ -248,14 +254,14 @@ export default class Promjeniposudbu extends React.Component {
                 <span>{clan.prezime} {clan.ime}</span>
               </>
             )}
-            onChange={odabraniClan}
+            onChange={odabraniclan}
           />
           </Form.Group>
           <Table striped bordered hover responsive>
               <thead>
                 <tr>
-                  <th>Clan</th>
-                  <th>Akcija</th>
+                  <th>clan</th>
+                  
                 </tr>
               </thead>
               <tbody>
@@ -264,7 +270,7 @@ export default class Promjeniposudbu extends React.Component {
                 <tr key={index}>
                   <td > {clan.ime} {clan.prezime}</td>
                   <td>
-                  <Button variant="danger"   onClick={() => this.obrisiclan(posudba.sifra, clan.sifra)}><FaTrash /></Button>
+                  <Button variant="danger"   onClick={() => this.obrisiclanovi(posudba.sifra, clan.sifra)}><FaTrash /></Button>
                     
                   </td>
                 </tr>

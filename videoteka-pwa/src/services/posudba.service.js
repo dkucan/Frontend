@@ -10,7 +10,7 @@ class PosudbaDataService {
     return await http.get('/posudba/' + sifra);
   }
 
-  async getClan(sifra) {
+  async getClanovi(sifra) {
     // console.log(sifra);
      return await http.get('/posudba/' + sifra + '/clan');
    }

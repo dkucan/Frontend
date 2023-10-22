@@ -16,10 +16,8 @@ import { Modal } from 'react-bootstrap';
 export default class Posudba extends React.Component {
     constructor(props) {
       super(props);
-      const token = localStorage.getItem('Bearer');
-      if(token==null || token===''){
-        window.location.href='/';
-      }
+      
+      
       this.dohvatiposudbu = this.dohvatiposudbu.bind(this);
   
       this.state = {
@@ -68,10 +66,13 @@ export default class Posudba extends React.Component {
         <Table striped bordered hover responsive>
                 <thead>
                   <tr>
+
+                    <th>Clan</th>
+                    <th>Naslov</th>
                     <th>Datum_posudbe</th>
                     <th>Datum_vracanja</th>
                     <th>Zakasnina</th>
-                    <th>Clan</th>
+                    
                   </tr>
                 </thead>
                 <tbody>
@@ -80,11 +81,11 @@ export default class Posudba extends React.Component {
                   <tr key={index}>
                     <td> 
                       <p className="naslovKazeta">{g.naziv} ({g.brojClanova})</p>
-                      {g.smjer}
+                      {g.kazeta}
                     </td>
                     <td className="naslovKazeta">
-                      {g.Datum_posudbe==null ? "Nije definirano" :
-                      moment.utc(g.Datum_posudbe).format("YYYY.MM.DD")}
+                      {g.datum_posudbe==null ? "Nije definirano" :
+                      moment.utc(g.datum_posudbe).format("yyyy-mm-dd")}
                     </td>
                     <td>
                       <Row>
@@ -124,3 +125,4 @@ export default class Posudba extends React.Component {
       
           }
   }
+        
