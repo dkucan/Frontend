@@ -67,11 +67,14 @@ export default class Posudba extends React.Component {
                 <thead>
                   <tr>
 
-                    <th>Clan</th>
-                    <th>Naslov</th>
-                    <th>Datum_posudbe</th>
-                    <th>Datum_vracanja</th>
-                    <th>Zakasnina</th>
+                    <th>clan</th>
+                    <th>brojKazeta</th>
+                    <th>datum_posudbe</th>
+                    <th>datum_vracanja</th>
+                    <th>zakasnina</th>
+                    <th>sifraClan</th>
+                    <th>sifra</th>
+                    <th>promjeniposudbu</th>
                     
                   </tr>
                 </thead>
@@ -79,21 +82,60 @@ export default class Posudba extends React.Component {
                 {posudba && posudba.map((g,index) => (
                   
                   <tr key={index}>
-                    <td> 
-                      <p className="naslovKazeta">{g.naziv} ({g.brojClanova})</p>
-                      {g.kazeta}
-                    </td>
-                    <td className="naslovKazeta">
-                      {g.datum_posudbe==null ? "Nije definirano" :
-                      moment.utc(g.datum_posudbe).format("yyyy-mm-dd")}
-                    </td>
+                    
+                    <td>
+                      <p className="Posudba">{g.posudba} ({g.brojclanova})</p>
+                      {g.clan}
+                      </td>
+                     
+                    <td> className="clan"{g.clan== null}
+                 
+                  
+                    <p className="brojKazeta">{g.brojKazeta} ({g.brojKazeta})</p>
+                     {g.brojKazeta}
+                     
+
+                     </td>
+
+                     <td>
+
+                     <p className="datum_posudbe">{g.datum_posudbe} ({g.datum_posudbe})</p>
+                     {g.datum_posudbe==null? "Nije definirano": moment.utc(g.datum_posudbe).format("yyyy.mm.dd")}
+                     
+                     </td>
+
+                     <td>
+                     <p className="datum_vracanja">{g.datum_vracanja} ({g.datum_vracanja})</p>
+                     {g.datum_vracanja==null ? "Nije definirano": moment.utc(g.datum_vracanja).format("yyyy.mm.dd")}
+                     </td>
+
+                     
+                    <td>
+
+                     <p className="zakasnina">{g.zakasnina} ({g.zakasnina})</p>
+                     {g. zakasnina}
+
+                     </td>
+
+                     <td>
+                     <p className="sifraclan">{g.sifraclan} ({g.sifraclan})</p>
+                     {g.sifraclan}
+                     <p className="sifra">{g.sifra} ({g.sifra})</p>
+                     {g.sifra}
+
+                     </td>
+
+                     <td>
+                     <p className="promjeniposudbu">{g.promjeniposuidbu} ({g.promjeniposudbu})</p>
+                     {g.promjeniposudbu}
+                     </td>
                     <td>
                       <Row>
                         <Col>
                           <Link className="btn btn-primary gumb" to={`/posudba/${g.sifra}`}><FaEdit /></Link>
                         </Col>
                         <Col>
-                          { g.brojClanova===0 &&
+                          { g.brojclanova===0 &&
                                <Button variant="danger"  className="gumb" onClick={() => this.obrisiposudbu(g.sifra)}><FaTrash /></Button>
                           }
                         </Col>

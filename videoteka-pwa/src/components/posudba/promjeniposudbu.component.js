@@ -20,22 +20,22 @@ export default class Promjeniposudbu extends React.Component {
     super(props);
   
 
-    this.posudba = this.dohvatiPosudbu();
+    this.posudba = this.dohvatiposudbu();
     this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.kazeta = this.dohvatikazetu();
-    this.clanovi = this.dohvaticlanovi();
-    this.obrisiclanovi = this.obrisiclanovi.bind(this);
-    this.traziclanove = this.traziclanove.bind(this);
-    this.dodajclana = this.dodajclana.bind(this);
+    this.clan = this.dohvaticlan();
+    this.obrisiclan = this.obrisiclan.bind(this);
+    this.traziclan = this.traziclan.bind(this);
+    this.dodajclana = this.dodajclan.bind(this);
 
 
     this.state = {
       
       clan:[],
       brojKazeta:[],
-      Dtum_posudbe:[],
-      Datum_vracanja:[],
+      datum_posudbe:[],
+      datum_vracanja:[],
       zakasnina:[],
       sifraclan:{},
       sifra:[]
@@ -45,7 +45,7 @@ export default class Promjeniposudbu extends React.Component {
 
 
 
-  async dohvatiPosudbu() {
+  async dohvatiposudbu() {
     // ovo mora bolje
     //console.log('Dohvaćam posudbu');
     let href = window.location.href;
@@ -53,10 +53,10 @@ export default class Promjeniposudbu extends React.Component {
     await PosudbaDataService.getBySifra(niz[niz.length-1])
       .then(response => {
         let g = response.data;
-        g.Datum_posudbe = moment.utc(g.Datum_posudbe).format("yyyy-mm-dd");
-        g.Datum_vracanja = moment.utc(g.Datum_vracanja).format("yyyy-mm-dd");
+        g.datum_posudbe = moment.utc(g.datum_posudbe).format("yyyy-mm-dd");
+        g.datum_vracanja = moment.utc(g.datum_vracanja).format("yyyy-mm-dd");
         
-        //console.log(g.Datum_posudbe);
+        //console.log(g.datum_posudbe);
         this.setState({
           posudba: g
         });
@@ -97,10 +97,10 @@ export default class Promjeniposudbu extends React.Component {
       });
   }
 
-  async dohvaticlanovi() {
+  async dohvaticlan() {
     let href = window.location.href;
     let niz = href.split('/'); 
-    await PosudbaDataService.getClanova(niz[niz.length-1])
+    await PosudbaDataService.getclan(niz[niz.length-1])
        .then(response => {
          this.setState({
            clanovi: response.data
@@ -115,7 +115,7 @@ export default class Promjeniposudbu extends React.Component {
 
    
 
-   async traziclanove(uvjet) {
+   async traziclan(uvjet) {
 
     await clandataservice.traziclanove( uvjet)
        .then(response => {
@@ -130,19 +130,19 @@ export default class Promjeniposudbu extends React.Component {
        });
    }
 
-   async obrisiclanovi(posudba, clan){
-    const odgovor = await PosudbaDataService.obrisiclanovi(posudba, clan);
+   async obrisiclan(posudba, clan){
+    const odgovor = await PosudbaDataService.obrisiclan(posudba, clan);
     if(odgovor.ok){
-     this.dohvaticlanovi();
+     this.dohvaticlan();
     }else{
      //this.otvoriModal();
     }
    }
 
-   async dodajclana(posudba, clan){
-    const odgovor = await PosudbaDataService.dodajclana(posudba, clan);
+   async dodajclan(posudba, clan){
+    const odgovor = await PosudbaDataService.dodajclan(posudba, clan);
     if(odgovor.ok){
-     this.dohvaticlanovi();
+     this.dohvaticlan();
     }else{
     //this.otvoriModal();
     }
@@ -154,13 +154,18 @@ export default class Promjeniposudbu extends React.Component {
     const podaci = new FormData(e.target);
     console.log(podaci.get('datum_posudbe'));
     console.log(podaci.get('datum_vracanja'));
-    let datum = moment.utc(podaci.get('Datum_posudbe') + ' ' + podaci.get('Datum_vracanja'));
+    let datum = moment.utc(podaci.get('datum_posudbe') + ' ' + podaci.get('datum_vracanja'));
     console.log(datum);
 
     this.promjeniPosudbu({
-      Datum_posudbe: podaci.get('Datum_posudbe'),
-      Datum_vracanja: podaci.get('Datum_vracanja'),
-      sifrakazeta: this.state.sifrakazeta
+      
+      brojKazeta: podaci.get('brojKazeta'),
+      datum_posudbe: podaci.get('datum_posudbe'),
+      datum_vracanja: podaci.get('datum_vracanja'),
+      zakasnina: podaci.get('zakasnina'),
+      sifraclan: podaci.get('sifraClan'),
+      sifrakazeta: podaci.get('sifrakazeta'),
+      sifra: podaci.get('sifra'),
     });
     
   }
@@ -174,13 +179,13 @@ export default class Promjeniposudbu extends React.Component {
 
 
     const obradiTrazenje = (uvjet) => {
-      this.traziclanove( uvjet);
+      this.traziclan( uvjet);
     };
 
     const odabraniclan = (clan) => {
       //console.log(posudba.sifra + ' - ' + clan[0].sifra);
       if(clan.length>0){
-        this.dodajclana(posudba.sifra, clan[0].sifra);
+        this.dodajclan(posudba.sifra, clan[0].sifra);
       }
      
     };
@@ -191,19 +196,19 @@ export default class Promjeniposudbu extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Row>
           <Col key="1" sm={12} lg={6} md={6}>
-              <Form.Group className="mb-3" controlId="Datum_posudbe">
-                <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="datetime" name="Datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.Datum_posudbe}  required/>
+              <Form.Group className="mb-3" controlId="datum_posudbe">
+                <Form.Label>datum_posudbe</Form.Label>
+                <Form.Control type="datetime" name="datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.datum_posudbe}  required/>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Datum_vracanja">
-                <Form.Label>Datum_vracanja</Form.Label>
-                <Form.Control type="datetime" name="Datum_vracanja" placeholder="" maxLength={255} defaultValue={posudba.Datum_vracanja}  required/>
+              <Form.Group className="mb-3" controlId="datum_vracanja">
+                <Form.Label>datum_vracanja</Form.Label>
+                <Form.Control type="datetime" name="datum_vracanja" placeholder="" maxLength={255} defaultValue={posudba.datum_vracanja}  required/>
               </Form.Group>
 
 
-              <Form.Group className="mb-3" controlId="Kazeta">
-                <Form.Label>Kazeta</Form.Label>
+              <Form.Group className="mb-3" controlId="kazeta">
+                <Form.Label>kazeta</Form.Label>
                 <Form.Select defaultValue={posudba.sifrakazeta}  onChange={e => {
                   this.setState({ sifrakazeta: e.target.value});
                 }}>
@@ -214,14 +219,14 @@ export default class Promjeniposudbu extends React.Component {
                 </Form.Select>
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Datum_posudbe">
-                <Form.Label>Datum_posudbe</Form.Label>
-                <Form.Control type="datetime" name="Datum_posudbe" placeholder="" defaultValue={posudba.Datum_posudbe}  />
+              <Form.Group className="mb-3" controlId="datum_posudbe">
+                <Form.Label>datum_posudbe</Form.Label>
+                <Form.Control type="datetime" name="datum_posudbe" placeholder="" defaultValue={posudba.datum_posudbe}  />
               </Form.Group>
 
-              <Form.Group className="mb-3" controlId="Datum_vracanja">
-                <Form.Label>Datum_vracanja</Form.Label>
-                <Form.Control type="datetime" name="Datum_vracanja" placeholder="" defaultValue={posudba.Datum_vracanja}  />
+              <Form.Group className="mb-3" controlId="datum_vracanja">
+                <Form.Label>datum_vracanja</Form.Label>
+                <Form.Control type="datetime" name="datum_vracanja" placeholder="" defaultValue={posudba.datum_vracanja}  />
               </Form.Group>
 
               <Row>
@@ -230,7 +235,7 @@ export default class Promjeniposudbu extends React.Component {
                 </Col>
                 <Col>
                 <Button variant="primary" className="gumb" type="submit">
-                  Promjeni posudbu
+                  promjeni posudbu
                 </Button>
                 </Col>
               </Row>
@@ -270,7 +275,7 @@ export default class Promjeniposudbu extends React.Component {
                 <tr key={index}>
                   <td > {clan.ime} {clan.prezime}</td>
                   <td>
-                  <Button variant="danger"   onClick={() => this.obrisiclanovi(posudba.sifra, clan.sifra)}><FaTrash /></Button>
+                  <Button variant="danger"   onClick={() => this.obrisiclan(posudba.sifra, clan.sifra)}><FaTrash /></Button>
                     
                   </td>
                 </tr>

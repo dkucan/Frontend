@@ -64,10 +64,12 @@ export default class DodajPosudbu extends React.Component {
         const podaci=new FormData(e.target);
 
         console.log(podaci.get('clan'));
-        console.log(podaci.get('naslov'));
+        console.log(podaci.get('brojKazeta'));
         console.log(podaci.get('datum_posudbe'));
         console.log(podaci.get('datum_vracanja'));
         console.log(podaci.get('zakasnina'));
+        console.log(podaci.get('sifraClan'));
+        console.log(podaci.get('sifra'));
         
 
         let datum = moment.utc(podaci.get('datum_posudbe')) + '' + podaci.get('datum_vracanja');
@@ -76,10 +78,12 @@ export default class DodajPosudbu extends React.Component {
         this.dodajposudbu({
 
             clan: podaci.get('clan'),
-            naslov: podaci.get('naslov'),
+            brojKazeta: podaci.get('brojKazeta'),
             datum_posudbe: podaci.get('datum_posudbe'),
             datum_vracanja: podaci.get('datum_vracanja'),
             zakasnina: podaci.get('zakasnina'),
+            sifraClan: podaci.get('sifraClan'),
+            sifra: podaci.get('sifra'),
             
         });
     }
@@ -94,20 +98,19 @@ export default class DodajPosudbu extends React.Component {
 
               <Form.Group className="mb-3" controlId="clan">
                 <Form.Label>clan</Form.Label>
-                <Form.Control type="text" name="clan" placeholder="" maxLength={255} required/>
+                <Form.Control type="text" name="clan" placeholder="" maxLength={255} />
                 </Form.Group>  
+
 
                 <Form.Group className="mb-3" controlId="naslov">
                 <Form.Label>naslov</Form.Label>
-                <Form.Select onChange={e => {
-                this.setState({ sifrakazeta: e.target.value});
-                }}>
-                {kazeta && kazeta.map((kazeta,index) => (
-                <option key={index} value={kazeta.sifra}>{kazeta.naslov}</option>
+                <Form.Control type="text" name="naslov" placeholder="" maxLength={255} required/>
+                </Form.Group>  
 
-            ))}
-            </Form.Select>
-          </Form.Group>
+                <Form.Group className="mb-3" controlId="brojKazeta">
+                <Form.Label>brojKazeta</Form.Label>
+                <Form.Control type="int" name="brojKazeta" placeholder="" required />
+                </Form.Group>
 
                 <Form.Group className="mb-3" controlId="datum_posudbe">
                 <Form.Label>datum_posudbe</Form.Label>
@@ -120,8 +123,18 @@ export default class DodajPosudbu extends React.Component {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="zakasnina">
-<               Form.Label>zakasnina</Form.Label>
+                <Form.Label>zakasnina</Form.Label>
                 <Form.Control type="text" name="zakasnina" placeholder="" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="sifraClan">
+                <Form.Label>sifraClan</Form.Label>
+                <Form.Control type="int" name="sifraClan" placeholder="" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="sifra">
+                <Form.Label>sifra</Form.Label>
+                <Form.Control type="int" name="sifra" placeholder="" />
                 </Form.Group>
 
         

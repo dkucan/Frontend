@@ -10,7 +10,7 @@ class PosudbaDataService {
     return await http.get('/posudba/' + sifra);
   }
 
-  async getClanovi(sifra) {
+  async getclan(sifra) {
     // console.log(sifra);
      return await http.get('/posudba/' + sifra + '/clan');
    }
@@ -18,7 +18,7 @@ class PosudbaDataService {
 
 
   async post(posudba){
-    //console.log(smjer);
+    //console.log(kazeta);
     const odgovor = await http.post('/posudba',posudba)
        .then(response => {
          return {ok:true, poruka: 'Unio posudbu'}; // return u odgovor
@@ -29,6 +29,11 @@ class PosudbaDataService {
        });
  
        return odgovor;
+}
+
+async postBySifra(sifra){
+  //console.log(sifra);
+  const odgovor = await http.post('/posudba', + sifra);
 }
 
 
@@ -46,7 +51,7 @@ class PosudbaDataService {
        return odgovor;
      }
 
-     async obrisiClana(posudba, clan){
+     async obrisiClan(posudba, clan){
     
       const odgovor = await http.delete('/posudba/obrisiclan/' + posudba + '/' + clan)
          .then(response => {
@@ -60,7 +65,7 @@ class PosudbaDataService {
          return odgovor;
        }
 
-       async dodajclana(posudba, clan){
+       async dodajclan(posudba, clan){
     
         const odgovor = await http.post('/posudba/dodajclan/' + posudba + '/' + clan)
            .then(response => {
