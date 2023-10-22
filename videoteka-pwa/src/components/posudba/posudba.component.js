@@ -73,6 +73,7 @@ export default class Posudba extends React.Component {
                     <th>datum_vracanja</th>
                     <th>zakasnina</th>
                     <th>sifraClan</th>
+                    <th>sifraKazeta</th>
                     <th>sifra</th>
                     <th>promjeniposudbu</th>
                     
@@ -124,7 +125,11 @@ export default class Posudba extends React.Component {
                      {g.sifra}
 
                      </td>
-
+                     <td>
+                     <p className="sifraKazeta">{g.sifraKazeta} ({g.sifraKazeta})</p>
+                     {g.sifraKazeta}
+                   
+                      </td>  
                      <td>
                      <p className="promjeniposudbu">{g.promjeniposuidbu} ({g.promjeniposudbu})</p>
                      {g.promjeniposudbu}

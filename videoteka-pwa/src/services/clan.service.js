@@ -2,10 +2,8 @@ import http from '../http-common';
 
 class clandataservice {
   async getAll() {
-    return await http.get('/Clan');
+    return await http.get('/clan');
   }
-
-
 
   async getBySifra(sifra) {
     return await http.get('/clan/' + sifra);

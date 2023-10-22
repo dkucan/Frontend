@@ -87,7 +87,7 @@ export default class Promjeniposudbu extends React.Component {
       .then(response => {
         this.setState({
           kazeta: response.data,
-          sifrakazeta: response.data[0].sifra
+          sifraKazeta: response.data[0].sifra
         });
 
        // console.log(response.data);
@@ -159,12 +159,13 @@ export default class Promjeniposudbu extends React.Component {
 
     this.promjeniPosudbu({
       
+      clan: podaci.get('clan'),
       brojKazeta: podaci.get('brojKazeta'),
       datum_posudbe: podaci.get('datum_posudbe'),
       datum_vracanja: podaci.get('datum_vracanja'),
       zakasnina: podaci.get('zakasnina'),
       sifraclan: podaci.get('sifraClan'),
-      sifrakazeta: podaci.get('sifrakazeta'),
+      sifraKazeta: podaci.get('sifraKazeta'),
       sifra: podaci.get('sifra'),
     });
     
@@ -209,8 +210,8 @@ export default class Promjeniposudbu extends React.Component {
 
               <Form.Group className="mb-3" controlId="kazeta">
                 <Form.Label>kazeta</Form.Label>
-                <Form.Select defaultValue={posudba.sifrakazeta}  onChange={e => {
-                  this.setState({ sifrakazeta: e.target.value});
+                <Form.Select defaultValue={posudba.sifraKazeta}  onChange={e => {
+                  this.setState({ sifraKazeta: e.target.value});
                 }}>
                 {kazeta && kazeta.map((kazeta,index) => (
                       <option key={index} value={kazeta.sifra}>{kazeta.naslov}</option>

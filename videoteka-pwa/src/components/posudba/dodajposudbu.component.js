@@ -83,6 +83,7 @@ export default class DodajPosudbu extends React.Component {
             datum_vracanja: podaci.get('datum_vracanja'),
             zakasnina: podaci.get('zakasnina'),
             sifraClan: podaci.get('sifraClan'),
+            sifraKazeta: podaci.get('sifraKazeta'),
             sifra: podaci.get('sifra'),
             
         });
@@ -130,6 +131,11 @@ export default class DodajPosudbu extends React.Component {
                 <Form.Group className="mb-3" controlId="sifraClan">
                 <Form.Label>sifraClan</Form.Label>
                 <Form.Control type="int" name="sifraClan" placeholder="" />
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="sifraKazeta">
+                <Form.Label>sifraKazeta</Form.Label>
+                <Form.Control type="int" name="sifraKazeta" placeholder="" />
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="sifra">
