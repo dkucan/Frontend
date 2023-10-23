@@ -32,7 +32,7 @@ class PosudbaDataService {
 }
 
 async postBySifra(sifra){
-  //console.log(sifra);
+  //console.log(kazeta);
   const odgovor = await http.post('/posudba', + sifra);
 }
 

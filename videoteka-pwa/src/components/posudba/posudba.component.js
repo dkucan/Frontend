@@ -72,9 +72,7 @@ export default class Posudba extends React.Component {
                     <th>datum_posudbe</th>
                     <th>datum_vracanja</th>
                     <th>zakasnina</th>
-                    <th>sifraClan</th>
-                    <th>sifraKazeta</th>
-                    <th>sifra</th>
+                   
                     <th>promjeniposudbu</th>
                     
                   </tr>
@@ -88,25 +86,22 @@ export default class Posudba extends React.Component {
                       <p className="Posudba">{g.posudba} ({g.brojclanova})</p>
                       {g.clan}
                       </td>
-                     
-                    
                       <td>
                   
                     <p className="brojKazeta">{g.brojKazeta}</p>
-                     
                      
 
                      </td>
 
                      <td>
 
-                     <p className="datum_posudbe">{g.datum_posudbe} ({g.datum_posudbe})</p>
+                     <p className="datum_posudbe">{g.datum_posudbe}</p>
              
                      
                      </td>
 
                      <td>
-                     <p className="datum_vracanja">{g.datum_vracanja} ({g.datum_vracanja})</p>
+                     <p className="datum_vracanja">{g.datum_vracanja}</p>
                   
                      </td>
 
@@ -114,22 +109,10 @@ export default class Posudba extends React.Component {
                     <td>
 
                      <p className="zakasnina">{g.zakasnina}</p>
-                     
+                     <td>
 
                      </td>
 
-                     <td>
-                     <p className="sifraclan">{g.sifraClan}</p>
-                     </td>
-                     <td>
-                     <p className="sifra">{g.sifra}</p>
-                     
-
-                     </td>
-                     <td>
-                     <p className="sifraKazeta">({g.sifraKazeta})</p>
-                     
-                
                      <p className="promjeniposudbu">({g.promjeniposudbu})</p>
                      
                      </td>

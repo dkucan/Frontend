@@ -12,6 +12,7 @@ import moment from 'moment';
 import {Table} from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import kazeta from "../kazeta/kazeta.component";
 
 
 export default class Promjeniposudbu extends React.Component {
@@ -23,12 +24,16 @@ export default class Promjeniposudbu extends React.Component {
     this.posudba = this.dohvatiposudbu();
     this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    
 
 
     this.state = {
       
       posudba: {},
-      clan: []
+      kazeta:[],
+      clan: [],
+      sifraClan:0,
+      pronadjeniClan:[]
       
     };
   }
@@ -57,8 +62,6 @@ export default class Promjeniposudbu extends React.Component {
       });
   }
 
-  
-
   async promjeniposudbu(posudba) {
     const odgovor = await PosudbaDataService.post(posudba);
     if(odgovor.ok){
@@ -70,8 +73,57 @@ export default class Promjeniposudbu extends React.Component {
     }
   }
 
+  async dohvaticlan() {
+    let href = window.location.href;
+    let niz = href.split('/'); 
+    await PosudbaDataService.getClan(niz[niz.length-1])
+       .then(response => {
+         this.setState({
+           polaznici: response.data
+         });
  
+        // console.log(response.data);
+       })
+       .catch(e => {
+         console.log(e);
+       });
+   }
 
+   
+
+   async traziClan( uvjet) {
+
+    await clandataservice.traziclan( uvjet)
+       .then(response => {
+         this.setState({
+          pronadeniclan: response.data
+         });
+ 
+        // console.log(response.data);
+       })
+       .catch(e => {
+         console.log(e);
+       });
+   }
+
+   async obrisiclan(posudba, clan){
+    const odgovor = await PosudbaDataService.obrisiclan(posudba, clan);
+    if(odgovor.ok){
+     this.dohvaticlan();
+    }else{
+     //this.otvoriModal();
+    }
+   }
+
+   async dodajclan(posudba, clan){
+    const odgovor = await PosudbaDataService.dodajclan(posudba, clan);
+    if(odgovor.ok){
+     this.dohvaticlan();
+    }else{
+    //this.otvoriModal();
+    }
+   }
+ 
   handleSubmit(e) {
     e.preventDefault();
     const podaci = new FormData(e.target);
@@ -89,7 +141,7 @@ export default class Promjeniposudbu extends React.Component {
       zakasnina: podaci.get('zakasnina'),
       sifraClan: podaci.get('sifraClan'),
       sifraKazeta: podaci.get('sifraKazeta'),
-      sifra: podaci.get('sifra'),
+      sifraKazeta: podaci.get('sifraKazeta'),
     });
     
   }
@@ -119,12 +171,10 @@ export default class Promjeniposudbu extends React.Component {
        
         <Form onSubmit={this.handleSubmit}>
           <Row>
-          <Col key="1" sm={12} lg={6} md={6}>
+          <Col key={1} sm={12} lg={6} md={6}>
 
-          <Form.Group className="mb-3" controlId="clan">
-                <Form.Label>clan</Form.Label>
-                <Form.Control type="text" name="clan" placeholder="" maxLength={255} defaultValue={posudba.clan} />
-              </Form.Group>
+          
+               
           <Form.Group className="mb-3" controlId="brojKazeta">
                 <Form.Label>brojKazeta</Form.Label>
                 <Form.Control type="int" name="brojKazeta" placeholder="" maxLength={255} defaultValue={posudba.brojKazeta}  required/>
@@ -169,11 +219,52 @@ export default class Promjeniposudbu extends React.Component {
                 </Col>
               </Row>
           </Col>
-          <Col key="1" sm={12} lg={6} md={6}>
-          
+          <Col key={2} sm={12} lg={6} md={6} className="clanPosudba">
+          <Form.Group className="mb-3" controlId="clanPosudba">
+                <Form.Label>Traži clana</Form.Label>
+                
+          <AsyncTypeahead
+            className="autocomplete"
+            clanPosudba="uvjet"
+            emptyLabel="Nema rezultata"
+            searchText="Tražim..."
+            labelKey={(clan) => `${clan.prezime} ${clan.ime}`}
+            minLength={3}
+            options={pronadeniclan}
+            onSearch={obradiTrazenje}
+            placeholder="dio imena ili prezimena"
+            renderMenuItemChildren={(clan) => (
+              <>
+                <span>{clan.prezime} {clan.ime}</span>
+              </>
+            )}
+            onChange={odabraniclan}
+          />
+          </Form.Group>
+          <Table striped bordered hover responsive>
+              <thead>
+                <tr>
+                  <th>clan</th>
+                
+                </tr>
+              </thead>
+              <tbody>
+              {clan && clan.map((clan,index) => (
+                
+                <tr key={index}>
+                  <td > {clan.ime} {clan.prezime}</td>
+                  <td>
+                  <Button variant="danger"   onClick={() => this.obrisiclan(posudba.sifra, clan.sifra)}><FaTrash /></Button>
+                    
+                  </td>
+                </tr>
+                ))
+              }
+              </tbody>
+            </Table>    
           </Col>
-     
-        </Row>
+          </Row>
+
           
          
           
