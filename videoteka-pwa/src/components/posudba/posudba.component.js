@@ -89,11 +89,11 @@ export default class Posudba extends React.Component {
                       {g.clan}
                       </td>
                      
-                    <td> className="clan"{g.clan== null}
-                 
+                    
+                      <td>
                   
-                    <p className="brojKazeta">{g.brojKazeta} ({g.brojKazeta})</p>
-                     {g.brojKazeta}
+                    <p className="brojKazeta">{g.brojKazeta}</p>
+                     
                      
 
                      </td>
@@ -101,38 +101,37 @@ export default class Posudba extends React.Component {
                      <td>
 
                      <p className="datum_posudbe">{g.datum_posudbe} ({g.datum_posudbe})</p>
-                     {g.datum_posudbe==null? "Nije definirano": moment.utc(g.datum_posudbe).format("yyyy.mm.dd")}
+             
                      
                      </td>
 
                      <td>
                      <p className="datum_vracanja">{g.datum_vracanja} ({g.datum_vracanja})</p>
-                     {g.datum_vracanja==null ? "Nije definirano": moment.utc(g.datum_vracanja).format("yyyy.mm.dd")}
+                  
                      </td>
 
                      
                     <td>
 
-                     <p className="zakasnina">{g.zakasnina} ({g.zakasnina})</p>
-                     {g. zakasnina}
+                     <p className="zakasnina">{g.zakasnina}</p>
+                     
 
                      </td>
 
                      <td>
-                     <p className="sifraclan">{g.sifraclan} ({g.sifraclan})</p>
-                     {g.sifraclan}
-                     <p className="sifra">{g.sifra} ({g.sifra})</p>
-                     {g.sifra}
+                     <p className="sifraclan">{g.sifraClan}</p>
+                     </td>
+                     <td>
+                     <p className="sifra">{g.sifra}</p>
+                     
 
                      </td>
                      <td>
-                     <p className="sifraKazeta">{g.sifraKazeta} ({g.sifraKazeta})</p>
-                     {g.sifraKazeta}
-                   
-                      </td>  
-                     <td>
-                     <p className="promjeniposudbu">{g.promjeniposuidbu} ({g.promjeniposudbu})</p>
-                     {g.promjeniposudbu}
+                     <p className="sifraKazeta">({g.sifraKazeta})</p>
+                     
+                
+                     <p className="promjeniposudbu">({g.promjeniposudbu})</p>
+                     
                      </td>
                     <td>
                       <Row>

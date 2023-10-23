@@ -32,13 +32,14 @@ export default class Promjeniposudbu extends React.Component {
 
     this.state = {
       
-      clan:[],
+      clan:{},
       brojKazeta:[],
       datum_posudbe:[],
       datum_vracanja:[],
       zakasnina:[],
-      sifraclan:{},
+      sifraClan:{},
       sifra:[]
+      
     };
   }
 
@@ -103,7 +104,7 @@ export default class Promjeniposudbu extends React.Component {
     await PosudbaDataService.getclan(niz[niz.length-1])
        .then(response => {
          this.setState({
-           clanovi: response.data
+           clan: response.data
          });
  
         // console.log(response.data);
@@ -164,7 +165,7 @@ export default class Promjeniposudbu extends React.Component {
       datum_posudbe: podaci.get('datum_posudbe'),
       datum_vracanja: podaci.get('datum_vracanja'),
       zakasnina: podaci.get('zakasnina'),
-      sifraclan: podaci.get('sifraClan'),
+      sifraClan: podaci.get('sifraClan'),
       sifraKazeta: podaci.get('sifraKazeta'),
       sifra: podaci.get('sifra'),
     });
