@@ -23,26 +23,15 @@ export default class Promjeniposudbu extends React.Component {
     this.posudba = this.dohvatiposudbu();
     this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.kazeta = this.dohvatikazetu();
-    this.clan = this.dohvaticlan();
-    this.obrisiclan = this.obrisiclan.bind(this);
-    this.traziclan = this.traziclan.bind(this);
-    this.dodajclana = this.dodajclan.bind(this);
 
 
     this.state = {
       
-      clan:{},
-      brojKazeta:[],
-      datum_posudbe:[],
-      datum_vracanja:[],
-      zakasnina:[],
-      sifraClan:{},
-      sifra:[]
+      posudba: {},
+      clan: []
       
     };
   }
-
 
 
 
@@ -54,10 +43,10 @@ export default class Promjeniposudbu extends React.Component {
     await PosudbaDataService.getBySifra(niz[niz.length-1])
       .then(response => {
         let g = response.data;
-        g.datum_posudbe = moment.utc(g.datum_posudbe).format("yyyy-mm-dd");
-        g.datum_vracanja = moment.utc(g.datum_vracanja).format("yyyy-mm-dd");
+        g.datum_posudbe = moment.utc(g.datum_posudbe).format("yyyy-MM-DD");
+        g.datum_vracanja = moment.utc(g.datum_vracanja).format("yyyy-MM-DD");
         
-        //console.log(g.datum_posudbe);
+        console.log(g);
         this.setState({
           posudba: g
         });
@@ -81,73 +70,6 @@ export default class Promjeniposudbu extends React.Component {
     }
   }
 
-
-  async dohvatikazetu() {
-   // console.log('Dohvaćam kazete');
-    await kazetadataservice.get()
-      .then(response => {
-        this.setState({
-          kazeta: response.data,
-          sifraKazeta: response.data[0].sifra
-        });
-
-       // console.log(response.data);
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  }
-
-  async dohvaticlan() {
-    let href = window.location.href;
-    let niz = href.split('/'); 
-    await PosudbaDataService.getclan(niz[niz.length-1])
-       .then(response => {
-         this.setState({
-           clan: response.data
-         });
- 
-        // console.log(response.data);
-       })
-       .catch(e => {
-         console.log(e);
-       });
-   }
-
-   
-
-   async traziclan(uvjet) {
-
-    await clandataservice.traziclanove( uvjet)
-       .then(response => {
-         this.setState({
-          pronadeniclan: response.data
-         });
- 
-        // console.log(response.data);
-       })
-       .catch(e => {
-         console.log(e);
-       });
-   }
-
-   async obrisiclan(posudba, clan){
-    const odgovor = await PosudbaDataService.obrisiclan(posudba, clan);
-    if(odgovor.ok){
-     this.dohvaticlan();
-    }else{
-     //this.otvoriModal();
-    }
-   }
-
-   async dodajclan(posudba, clan){
-    const odgovor = await PosudbaDataService.dodajclan(posudba, clan);
-    if(odgovor.ok){
-     this.dohvaticlan();
-    }else{
-    //this.otvoriModal();
-    }
-   }
  
 
   handleSubmit(e) {
@@ -158,7 +80,7 @@ export default class Promjeniposudbu extends React.Component {
     let datum = moment.utc(podaci.get('datum_posudbe') + ' ' + podaci.get('datum_vracanja'));
     console.log(datum);
 
-    this.promjeniPosudbu({
+    this.promjeniposudbu({
       
       clan: podaci.get('clan'),
       brojKazeta: podaci.get('brojKazeta'),
@@ -178,7 +100,7 @@ export default class Promjeniposudbu extends React.Component {
     const { posudba} = this.state;
     const { clan} = this.state;
     const { pronadeniclan} = this.state;
-
+    console.log(posudba);
 
     const obradiTrazenje = (uvjet) => {
       this.traziclan( uvjet);
@@ -198,38 +120,43 @@ export default class Promjeniposudbu extends React.Component {
         <Form onSubmit={this.handleSubmit}>
           <Row>
           <Col key="1" sm={12} lg={6} md={6}>
-              <Form.Group className="mb-3" controlId="datum_posudbe">
-                <Form.Label>datum_posudbe</Form.Label>
-                <Form.Control type="datetime" name="datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.datum_posudbe}  required/>
+
+          <Form.Group className="mb-3" controlId="clan">
+                <Form.Label>clan</Form.Label>
+                <Form.Control type="text" name="clan" placeholder="" maxLength={255} defaultValue={posudba.clan} />
               </Form.Group>
-
-              <Form.Group className="mb-3" controlId="datum_vracanja">
-                <Form.Label>datum_vracanja</Form.Label>
-                <Form.Control type="datetime" name="datum_vracanja" placeholder="" maxLength={255} defaultValue={posudba.datum_vracanja}  required/>
-              </Form.Group>
-
-
-              <Form.Group className="mb-3" controlId="kazeta">
-                <Form.Label>kazeta</Form.Label>
-                <Form.Select defaultValue={posudba.sifraKazeta}  onChange={e => {
-                  this.setState({ sifraKazeta: e.target.value});
-                }}>
-                {kazeta && kazeta.map((kazeta,index) => (
-                      <option key={index} value={kazeta.sifra}>{kazeta.naslov}</option>
-
-                ))}
-                </Form.Select>
+          <Form.Group className="mb-3" controlId="brojKazeta">
+                <Form.Label>brojKazeta</Form.Label>
+                <Form.Control type="int" name="brojKazeta" placeholder="" maxLength={255} defaultValue={posudba.brojKazeta}  required/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="datum_posudbe">
                 <Form.Label>datum_posudbe</Form.Label>
-                <Form.Control type="datetime" name="datum_posudbe" placeholder="" defaultValue={posudba.datum_posudbe}  />
+                <Form.Control type="date" name="datum_posudbe" placeholder="" maxLength={255} defaultValue={posudba.datum_posudbe}  required/>
               </Form.Group>
 
               <Form.Group className="mb-3" controlId="datum_vracanja">
                 <Form.Label>datum_vracanja</Form.Label>
-                <Form.Control type="datetime" name="datum_vracanja" placeholder="" defaultValue={posudba.datum_vracanja}  />
+                <Form.Control type="date" name="datum_vracanja" placeholder="" maxLength={255} defaultValue={posudba.datum_vracanja}  required/>
               </Form.Group>
+
+              <Form.Group className="mb-3" controlId="zakasnina">
+                <Form.Label>zakasnina</Form.Label>
+                <Form.Control type="int" name="zakasnina" placeholder="" maxLength={255} defaultValue={posudba.zakasnina}  required/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="sifraClan">
+                <Form.Label>sifraClan</Form.Label>
+                <Form.Control type="int" name="sifraClan" placeholder="" maxLength={255} defaultValue={posudba.sifraClan}  required/>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="sifra">
+                <Form.Label>sifra</Form.Label>
+                <Form.Control type="int" name="sifra" placeholder="" maxLength={255} defaultValue={posudba.sifra}  required/>
+              </Form.Group>
+
+
+          
 
               <Row>
                 <Col>
@@ -242,52 +169,11 @@ export default class Promjeniposudbu extends React.Component {
                 </Col>
               </Row>
           </Col>
-          <Col key="2" sm={12} lg={6} md={6} className="clanposudba">
-          <Form.Group className="mb-3" controlId="uvjet">
-                <Form.Label>Traži clana</Form.Label>
-                
-          <AsyncTypeahead
-            className="autocomplete"
-            id="uvjet"
-            emptyLabel="Nema rezultata"
-            searchText="Tražim..."
-            labelKey={(clan) => `${clan.prezime} ${clan.ime}`}
-            minLength={3}
-            options={pronadeniclan}
-            onSearch={obradiTrazenje}
-            placeholder="dio imena ili prezimena"
-            renderMenuItemChildren={(clan) => (
-              <>
-                <span>{clan.prezime} {clan.ime}</span>
-              </>
-            )}
-            onChange={odabraniclan}
-          />
-          </Form.Group>
-          <Table striped bordered hover responsive>
-              <thead>
-                <tr>
-                  <th>clan</th>
-                  
-                </tr>
-              </thead>
-              <tbody>
-              {clan && clan.map((clan,index) => (
-                
-                <tr key={index}>
-                  <td > {clan.ime} {clan.prezime}</td>
-                  <td>
-                  <Button variant="danger"   onClick={() => this.obrisiclan(posudba.sifra, clan.sifra)}><FaTrash /></Button>
-                    
-                  </td>
-                </tr>
-                ))
-              }
-              </tbody>
-            </Table>    
+          <Col key="1" sm={12} lg={6} md={6}>
+          
           </Col>
-          </Row>
-
+     
+        </Row>
           
          
           
