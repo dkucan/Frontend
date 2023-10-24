@@ -51,9 +51,9 @@ async postBySifra(sifra){
        return odgovor;
      }
 
-     async obrisiClan(posudba, clan){
+     async obrisiclan(posudba, clan){
     
-      const odgovor = await http.delete('/posudba/obrisiclan/' + posudba + '/' + clan)
+      const odgovor = await http.delete('/posudba/' + posudba + '/obrisi' + clan)
          .then(response => {
            return {ok:true, poruka: 'Obrisao uspješno'};
          })
@@ -67,7 +67,7 @@ async postBySifra(sifra){
 
        async dodajclan(posudba, clan){
     
-        const odgovor = await http.post('/posudba/dodajclan/' + posudba + '/' + clan)
+        const odgovor = await http.post('/posudba/' + posudba + '/dodaj' + clan)
            .then(response => {
              return {ok:true, poruka: 'Dodao uspješno'};
            })

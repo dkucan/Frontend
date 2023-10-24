@@ -12,7 +12,7 @@ import moment from 'moment';
 import {Table} from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import { AsyncTypeahead } from 'react-bootstrap-typeahead';
-import kazeta from "../kazeta/kazeta.component";
+
 
 
 export default class Promjeniposudbu extends React.Component {
@@ -24,7 +24,7 @@ export default class Promjeniposudbu extends React.Component {
     this.posudba = this.dohvatiposudbu();
     this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    
+   
 
 
     this.state = {
@@ -32,8 +32,8 @@ export default class Promjeniposudbu extends React.Component {
       posudba: {},
       kazeta:[],
       clan: [],
-      sifraClan:0,
-      pronadjeniClan:[]
+      sifrakazeta:0,
+      pronadeniclan:[]
       
     };
   }
@@ -50,8 +50,8 @@ export default class Promjeniposudbu extends React.Component {
         let g = response.data;
         g.datum_posudbe = moment.utc(g.datum_posudbe).format("yyyy-MM-DD");
         g.datum_vracanja = moment.utc(g.datum_vracanja).format("yyyy-MM-DD");
-        
-        console.log(g);
+
+        //console.log(g.datum_vracanja);
         this.setState({
           posudba: g
         });
@@ -73,13 +73,29 @@ export default class Promjeniposudbu extends React.Component {
     }
   }
 
+  async dohvatikazetu() {
+    // console.log('Dohvaćm kazete');
+     await kazetadataservice.get()
+       .then(response => {
+         this.setState({
+           kazeta: response.data,
+           sifraKazeta: response.data[0].sifra
+         });
+ 
+        // console.log(response.data);
+       })
+       .catch(e => {
+         console.log(e);
+       });
+      }
+
   async dohvaticlan() {
     let href = window.location.href;
     let niz = href.split('/'); 
     await PosudbaDataService.getClan(niz[niz.length-1])
        .then(response => {
          this.setState({
-           polaznici: response.data
+           clan: response.data
          });
  
         // console.log(response.data);
@@ -89,11 +105,9 @@ export default class Promjeniposudbu extends React.Component {
        });
    }
 
-   
+   async traziclan( uvjet) {
 
-   async traziClan( uvjet) {
-
-    await clandataservice.traziclan( uvjet)
+    await this.traziclan( uvjet)
        .then(response => {
          this.setState({
           pronadeniclan: response.data

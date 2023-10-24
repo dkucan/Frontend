@@ -72,7 +72,6 @@ export default class Posudba extends React.Component {
                     <th>datum_posudbe</th>
                     <th>datum_vracanja</th>
                     <th>zakasnina</th>
-                   
                     <th>promjeniposudbu</th>
                     
                   </tr>
@@ -83,14 +82,13 @@ export default class Posudba extends React.Component {
                   <tr key={index}>
                     
                     <td>
-                      <p className="Posudba">{g.posudba} ({g.brojclanova})</p>
-                      {g.clan}
+                      <p className="clan">{g.clan}</p>
+                      
                       </td>
                       <td>
                   
                     <p className="brojKazeta">{g.brojKazeta}</p>
-                     
-
+            
                      </td>
 
                      <td>
