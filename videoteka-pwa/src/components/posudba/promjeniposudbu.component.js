@@ -24,6 +24,10 @@ export default class Promjeniposudbu extends React.Component {
     this.posudba = this.dohvatiposudbu();
     this.promjeniposudbu = this.promjeniposudbu.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.kazeta = this.dohvatikazetu();
+    this.obrisiclan=this.obrisiclan.bind(this);
+    this.traziclan=this.traziclan.bind(this);
+    this.dodajclan=this.dodajclan.bind(this);
    
 
 
@@ -232,6 +236,11 @@ export default class Promjeniposudbu extends React.Component {
                 </Button>
                 </Col>
               </Row>
+              <Col>
+              <Button variant="primary" className="gumb" type="submit">
+              obrisiposudbu
+                </Button>
+              </Col>
           </Col>
           <Col key={2} sm={12} lg={6} md={6} className="clanPosudba">
           <Form.Group className="mb-3" controlId="clanPosudba">
@@ -275,7 +284,9 @@ export default class Promjeniposudbu extends React.Component {
                 ))
               }
               </tbody>
-            </Table>    
+            </Table>  
+            
+              
           </Col>
           </Row>
 
