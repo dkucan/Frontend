@@ -81,39 +81,18 @@ export default class Posudba extends React.Component {
                   
                   <tr key={index}>
                     
+                    <td className="clan">{g.clan}</td>
+                    <td className="brojKazeta">{g.brojKazeta}</td>
+                    <td className="datum_posudbe">{g.datum_posudbe}</td>
                     <td>
-                      <p className="clan">{g.clan}</p>
-                      
-                      </td>
-                      <td>
-                  
-                    <p className="brojKazeta">{g.brojKazeta}</p>
-            
-                     </td>
-
-                     <td>
-
-                     <p className="datum_posudbe">{g.datum_posudbe}</p>
-             
-                     
-                     </td>
-
-                     <td>
                      <p className="datum_vracanja">{g.datum_vracanja}</p>
-                  
                      </td>
-
-                     
-                    <td>
-
-                     <p className="zakasnina">{g.zakasnina}</p>
                      <td>
-
+                     <p className="zakasnina">{g.zakasnina}</p>
+                     <p className="promjeniposudbu">{g.promjeniposudbu}</p>
                      </td>
 
-                     <p className="promjeniposudbu">({g.promjeniposudbu})</p>
                      
-                     </td>
                     <td>
                       <Row>
                         <Col>
