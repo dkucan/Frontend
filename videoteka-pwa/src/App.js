@@ -14,18 +14,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Posudba from './components/posudba/posudba.component';
 import Dodajposudbu from './components/posudba/dodajposudbu.component';
 import Promjeniposudbu from './components/posudba/promjeniposudbu.component';
+import Login from './components/login.component';
 
 
 export default function App() {
   return (
     <Router>
 
-   
+   <Izbornik />     
     <Routes>
-  
+    
 
       <Route path='/' Component={Pocetna} />
-      <Route path='/izbornik' Component={Izbornik} />
       <Route path='/nadzornaploca' Component={Nadzornaploca} />
       <Route path='/kazeta' Component={Kazeta} />
       <Route path="/kazeta/dodajkazetu" Component= {Dodajkazetu} />
@@ -36,6 +36,7 @@ export default function App() {
       <Route path="/posudba" Component = {Posudba} />
       <Route path="/posudba/dodajposudbu" Component={Dodajposudbu} />
       <Route path="/posudba/:sifra" Component={Promjeniposudbu} />
+      <Route path="/login" element={<Login />} />
 
     </Routes>
   </Router>

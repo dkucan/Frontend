@@ -36,11 +36,12 @@ export default class Posudba extends React.Component {
     dohvatiposudbu() {
       PosudbaDataService.getAll()
         .then(response => {
-          this.setState({
-            posudba: response.data
-          });
-          console.log(response);
-        })
+          const posudba = response.data.map(item => ({
+            ...item,
+            zakasninaEur: item.zakasnina 
+        }));
+        this.setState({ posudba});
+      })
         .catch(e => {
           console.log(e);
         });
@@ -68,10 +69,12 @@ export default class Posudba extends React.Component {
                   <tr>
 
                     <th>clan</th>
+                    <th>Naslov</th>
                     <th>brojKazeta</th>
                     <th>datum_posudbe</th>
                     <th>datum_vracanja</th>
                     <th>zakasnina</th>
+                    
                     <th>promjeniposudbu</th>
                     
                   </tr>
@@ -82,17 +85,17 @@ export default class Posudba extends React.Component {
                   <tr key={index}>
                     
                     <td className="clan">{g.clan}</td>
+                    <td className="Naslov">{g.naslov}</td>
                     <td className="brojKazeta">{g.brojKazeta}</td>
                     <td className="datum_posudbe">{g.datum_posudbe}</td>
                     <td>
-                     <p className="datum_vracanja">{g.datum_vracanja}</p>
-                     </td>
-                     <td>
-                     <p className="zakasnina">{g.zakasnina}</p>
-                     <p className="promjeniposudbu">{g.promjeniposudbu}</p>
-                     </td>
-
-                     
+                    <p className="datum_vracanja">{g.datum_vracanja}</p>
+                    </td>
+                    <td>
+                    <p className="zakasnina">{g.zakasninaEur} EUR</p>
+                    <p className="promjeniposudbu">{g.promjeniposudbu}</p>
+                    
+                    </td>
                     <td>
                       <Row>
                         <Col>
