@@ -15,6 +15,9 @@ import Posudba from './components/posudba/posudba.component';
 import Dodajposudbu from './components/posudba/dodajposudbu.component';
 import Promjeniposudbu from './components/posudba/promjeniposudbu.component';
 import Login from './components/login.component';
+import Odjava from './components/odjava.omponent';
+
+
 
 
 export default function App() {
@@ -22,6 +25,7 @@ export default function App() {
     <Router>
 
    <Izbornik />     
+    
     <Routes>
     
 
@@ -37,8 +41,10 @@ export default function App() {
       <Route path="/posudba/dodajposudbu" Component={Dodajposudbu} />
       <Route path="/posudba/:sifra" Component={Promjeniposudbu} />
       <Route path="/login" element={<Login />} />
+      <Route path="/odjava" element={<Odjava />} />
+    
+ </Routes>
 
-    </Routes>
   </Router>
   );
 
