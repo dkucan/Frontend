@@ -11,13 +11,6 @@ export default class izbornik extends React.Component{
 
 
     render(){
-
-      const token = localStorage.getItem('Bearer');
-      //console.log(token);
-      const autoriziran =  token!==null && token!=='';
-  
-    //  console.log(autoriziran);
-  
         return (
 
             <Navbar expand="lg" className="bg-body-tertiary">
@@ -27,10 +20,10 @@ export default class izbornik extends React.Component{
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                   <Nav.Link href="/nadzornaploca">Nadzorna ploča</Nav.Link>
-                  <NavDropdown title="Aplikacija" id="basic-nav-dropdown">
+                  <NavDropdown title="Videoteka" id="basic-nav-dropdown">
                     <NavDropdown.Item href="/kazeta">kazeta</NavDropdown.Item>
                     <NavDropdown.Item href="/clan">
-                      clanovi
+                      Clanovi
                     </NavDropdown.Item>
                     <NavDropdown.Item href="/posudba">posudba</NavDropdown.Item>
                     <NavDropdown.Divider />
@@ -38,17 +31,11 @@ export default class izbornik extends React.Component{
                       Swagger
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link href="/odjava">Odjava</Nav.Link>
-          
-          </Nav>   
-        </Navbar.Collapse>
-         
+                </Nav>
+              </Navbar.Collapse>
+            </Container>
+          </Navbar>
 
-        { !autoriziran && 
-        <Nav.Link href="/login">Prijava</Nav.Link>
-         }
-      </Container>
-    </Navbar>
 
 
         );
